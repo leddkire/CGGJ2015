@@ -18,6 +18,7 @@ var tiempoAcumulado = 0
 var posX = 0
 var tipoActual = 'montana'
 var cantTipoCrear = 0
+var velocidad = 1.5
 
 func _get_random():
 	#Se consigue un numero random entre 1 y 4. Si no cambia, revisar el seed.
@@ -91,7 +92,7 @@ func _fixed_process(delta):
 	var count = 0
 	var tam = terrs.size()
 	var borrarUno
-	posX -= 1.0
+	posX -= velocidad
 	var paraBorrar = []
 	var posicionRela = 32
 	for elem in range(terrs.size()):
@@ -123,7 +124,7 @@ func _fixed_process(delta):
 				#Tipo elegido
 				add_terrain_scene(tipoActual)
 				
-		posicion.x -= 1.0
+		posicion.x -= velocidad
 		i.set_pos(posicion)
 		#posicionRela += 64
 	#if paraBorrar.size() > 0:
