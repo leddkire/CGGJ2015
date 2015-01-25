@@ -84,11 +84,21 @@ func add_terrain_scene(terr):
 	#	node = scenePradera.instance()
 	#var scene = load("res://game/montanaGen.scn")
 	#var node = scene.instance()
-	node.add_to_group("Terrenos")
+	
 	var posi = node.get_pos()
+	if terr == 'agua':
+		cantTipoCrear = 0
+	#	cantTipoCrear -= 1
+	#	while cantTipoCrear > 0:
+	#		node.add_water()
+	#		cantTipoCrear -= 1
+	#		cantSumAcu += 64
 	posi.x += acumulado
-	acumulado += cantSumAcu
 	node.set_pos(posi)
+	node.add_to_group("Terrenos")
+	#Se agrega todo el agua de una.
+	
+	acumulado += cantSumAcu
 	add_child(node)
 	posX = acumulado
 	
@@ -98,7 +108,7 @@ func _fixed_process(delta):
 	if tipoActual == 'montana' or tipoActual == 'pradera':
 		pointOfErase = 64
 	elif tipoActual == 'agua':
-		pointOfErase = 400
+		pointOfErase = 128
 	tiempoPasado = delta
 	tiempoAcumulado += delta
 	var terrs = get_tree().get_nodes_in_group("Terrenos")
@@ -108,6 +118,8 @@ func _fixed_process(delta):
 	posX -= velocidad
 	var paraBorrar = []
 	var posicionRela = 32
+	var agregar = true
+	var lastNode
 	for elem in range(terrs.size()):
 		var i = terrs[elem]
 		#var child = i.get_child(i.get_type())
@@ -115,30 +127,28 @@ func _fixed_process(delta):
 		#Chequeo rapidito de posiciones, si está menor que -32 entonces se elimina y se agrega otro
 		if posicion.x <= -pointOfErase and i.get_type() != 'agua':
 			paraBorrar.append(terrs[elem])
+			agregar == true
 		elif posicion.x <= -pointOfErase:
 			if i.get_pos().x <= -i.get_size():
 				paraBorrar.append(terrs[elem])
-				
-		if posicion.x <= -pointOfErase or tipoActual == 'agua':
-			if cantTipoCrear > 0:
-				if tipoActual == 'agua' and elem == terrs.size()-1 and i.get_type() == 'agua':
-					i.add_water()
-					pointOfErase += 64
-					posX += 64
-				elif tipoActual != 'agua':
-					add_terrain_scene(tipoActual)
-				cantTipoCrear -= 1
-				
-			elif posicion.x <= -pointOfErase:
-				choose_terrain()
-				cantTipoCrear = _get_random() - 1
-				add_terrain_scene(tipoActual)
-				
+			agregar == true
 		posicion.x -= velocidad
 		i.set_pos(posicion)
-		#posicionRela += 64
-	#if paraBorrar.size() > 0:
-	#	terrs[0].free()
+		
+		if elem == terrs.size()-1:
+			lastNode = terrs[elem]
+
+	if paraBorrar.size() > 0:
+		var posic = lastNode.get_pos()
+		#if tipoActual == 'agua':
+		if cantTipoCrear > 0:
+			add_terrain_scene(tipoActual)
+			cantTipoCrear -= 1
+		else:
+			choose_terrain()
+			cantTipoCrear = _get_random() - 1
+			add_terrain_scene(tipoActual)
+				
 	for i in paraBorrar:
 		i.free()
 	#set_fixed_process(true)
