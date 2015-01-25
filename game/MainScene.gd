@@ -11,7 +11,7 @@ var direction = Vector2(-1,0)
 var random_seed = randf()
 var random_arr = [1, random_seed]
 var seed_terr = randf()
-var random_terr = [1, seed_terr]
+var random_terr = [1, 0.348]
 var posStart = Vector2(0,0)
 var tiempoPasado = 0
 var tiempoAcumulado = 0
@@ -19,14 +19,27 @@ var posX = 0
 var tipoActual = 'montana'
 var cantTipoCrear = 0
 var velocidad = 1.5
+#cheat
+var firstWater = true;
 
 func _get_random():
 	#Se consigue un numero random entre 1 y 4. Si no cambia, revisar el seed.
 	random_arr = rand_seed(random_arr[1])
 	random_arr[0] = int(random_arr[0] % 4)
-	
 	random_arr[0] += 4
 	return random_arr[0]
+	
+func where_am_i(pos):
+	var escenas = get_tree().get_nodes_in_group("Terrenos")
+	for escena in escenas:
+		var tipo = escena.get_type()
+		var posicion = escena.get_pos()
+		if tipo == 'montana' or tipo == 'pradera':
+			if posicion.x-32<=pos<=posicion.x+32:
+				return tipo
+		else:
+			if posicion.x-96<=pos<=posicion.x+96:
+				return tipo
 
 func choose_terrain():
 	random_terr = rand_seed(random_terr[1])
@@ -117,11 +130,8 @@ func _fixed_process(delta):
 				cantTipoCrear -= 1
 				
 			elif posicion.x <= -pointOfErase:
-				#Choose terrain, random and add_terrain_scene
-				#choose
 				choose_terrain()
 				cantTipoCrear = _get_random() - 1
-				#Tipo elegido
 				add_terrain_scene(tipoActual)
 				
 		posicion.x -= velocidad

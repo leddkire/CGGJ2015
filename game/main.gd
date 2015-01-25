@@ -4,9 +4,10 @@ var FACTOR_BAJO = 0.5
 
 
 func _fixed_process(delta):
-	var terreno_actual = get_node("terrain").tipoActual
+	
 	var player = get_node("player")
 	var animal_actual = player.actual_animal
+	var terreno_actual = get_node("terrain").where_am_i(player.get_pos().x)
 	
 	if (terreno_actual == "montana"):
 		if(animal_actual == 0):
