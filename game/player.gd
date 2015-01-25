@@ -63,7 +63,7 @@ func _fixed_process(delta):
 					actual_animal = 2
 	
 	# Cambio de sprites
-	if (not jumping):
+	if (not jumping and capybara_timeout <= 0):
 		if (animal_1):
 			if (actual_animal != 0):
 				sprite.set_texture(deer)
