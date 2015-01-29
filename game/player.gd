@@ -158,7 +158,8 @@ func _fixed_process(delta):
 				sprite.set_texture(goat)
 				actual_animal = 2
 				
-	
+func _exit_tree():
+	get_node("/root/global").distance_travelled = distance
 
 func _ready():
 	# Initalization here

@@ -6,6 +6,7 @@ extends Node2D
 # var b="textvar"
 
 func _fixed_process(delta):
+	get_node("score").set_text("Your score: "+ str(int(get_node("/root/global").distance_travelled)))
 	if(Input.is_action_pressed("restart")):
 		get_node("/root/global").restart()
 		set_fixed_process(false)
@@ -14,6 +15,7 @@ func _fixed_process(delta):
 
 func _ready():
 	# Initalization here
+	
 	set_fixed_process(true)
 
 

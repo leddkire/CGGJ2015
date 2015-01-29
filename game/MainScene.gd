@@ -153,6 +153,8 @@ func _fixed_process(delta):
 		i.free()
 	#set_fixed_process(true)
 	
+
+	
 func _ready():
 	var acumulado = 0
 	var node
