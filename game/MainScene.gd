@@ -18,7 +18,7 @@ var tiempoAcumulado = 0
 var posX = 0
 var tipoActual = 'montana'
 var cantTipoCrear = 0
-var velocidad = 1.5
+var velocidad
 #cheat
 var firstWater = true;
 
@@ -159,6 +159,7 @@ func _ready():
 	var random = _get_random()
 	var nodeP
 	var first = true
+	velocidad = get_node("/root/global").screen_speed
 	while random > 0:
 		node = sceneMontana.instance()
 		node.add_to_group("Terrenos")

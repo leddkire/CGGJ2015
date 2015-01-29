@@ -22,6 +22,16 @@ var AMOUNT_RECOVERY = 0.1
 var BASE_STAMINA_CONS = 0.2
 var stamina_factor = 1
 
+#posicion original del sprite (para cuando se recupere el animal se pueda trasladar el sprite a este sitio.)
+var originalSpriteXPos
+#Velocidad en la que el animal se retrasa cuando esta cansado
+var tiredSpeed = 0.5
+#Velocidad de recuperacion
+var recoverSpeed = 2
+#Variable que guarda la diferencia entre la posicion actual y el traslado que se le hara
+var diferencialPosX
+
+
 func _get_random():
 	#Se consigue un numero random entre 1 y 4. Si no cambia, revisar el seed.
 	random_arr = rand_seed(random_arr[1])
@@ -42,6 +52,9 @@ func _fixed_process(delta):
 	get_node("distance").set_text(str(int(distance)))
 	get_node("coins_label").set_text(str(int(coins_acum)))
 
+
+	var posXActual = get_node("sprite").get_pos().x
+	diferencialPosX = posXActual
 	# Control de stamina
 	for i in range(3):
 		if (actual_animal != i):
@@ -50,17 +63,17 @@ func _fixed_process(delta):
 			if (stamina[i] > stamina[max_stamina]):
 				max_stamina = i
 		else:
-			stamina[i] -= BASE_STAMINA_CONS * stamina_factor
+			#Si el stamina del animal actual es mayor a 0, restarle stamina
+			if(stamina[i] > 0):
+				stamina[i] -= BASE_STAMINA_CONS * stamina_factor
+				#Si esta mas atras de la posicion original del sprite, se traslada hasta estar ahi
+				if(posXActual < originalSpriteXPos):
+					diferencialPosX += recoverSpeed
+					get_node("sprite").set_pos(Vector2(diferencialPosX,0))
 			if (stamina[i] <= 0):
-				if (max_stamina == 0):
-					sprite.set_texture(deer)
-					actual_animal = 0
-				elif (max_stamina == 1):
-					sprite.set_texture(toad)
-					actual_animal = 1
-				else:
-					sprite.set_texture(goat)
-					actual_animal = 2
+				diferencialPosX -= tiredSpeed
+				get_node("sprite").set_pos(Vector2(diferencialPosX,0))
+
 	
 	# Cambio de sprites
 	if (not jumping and capybara_timeout <= 0):
@@ -93,13 +106,13 @@ func _fixed_process(delta):
 		alt -= 0.04
 		if (alt > -1.2):
 			if (pos.y > 0):
-				sprite.set_pos(Vector2(pos.x, 0))
+				sprite.set_pos(Vector2(diferencialPosX, 0))
 				jumping = false
 				alt = 1.2
 				get_node("anim").play("running")
 			else:
 				pos += Vector2(0,-alt)
-				sprite.set_pos(pos)
+				sprite.set_pos(Vector2(diferencialPosX,pos.y))
 		else:
 			jumping = false
 			alt = 1.2
@@ -144,11 +157,15 @@ func _fixed_process(delta):
 			else:
 				sprite.set_texture(goat)
 				actual_animal = 2
+				
+	
 
 func _ready():
 	# Initalization here
 	get_node("sprite").set_texture(deer)
 	get_node("anim").play("running")
+	originalSpriteXPos  = get_node("sprite").get_pos().x
+	diferencialPosX = 0
 	actual_animal = 0
 	max_stamina = 0
 	distance = 0
