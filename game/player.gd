@@ -22,6 +22,8 @@ var AMOUNT_RECOVERY = 0.1
 var BASE_STAMINA_CONS = 0.2
 var stamina_factor = 1
 
+var blockChange = 0
+
 #posicion original del sprite (para cuando se recupere el animal se pueda trasladar el sprite a este sitio.)
 var originalSpriteXPos
 #Velocidad en la que el animal se retrasa cuando esta cansado
@@ -31,6 +33,8 @@ var recoverSpeed = 2
 #Variable que guarda la diferencia entre la posicion actual y el traslado que se le hara
 var diferencialPosX
 
+func _unblock_change():
+	blockChange = false
 
 func _get_random():
 	#Se consigue un numero random entre 1 y 4. Si no cambia, revisar el seed.
@@ -76,25 +80,31 @@ func _fixed_process(delta):
 
 	
 	# Cambio de sprites
-	if (not jumping and capybara_timeout <= 0):
+	if (not jumping and capybara_timeout <= 0 and not(blockChange)):
 		if (animal_1):
 			if (actual_animal != 0):
 				sprite.set_texture(deer)
 				actual_animal = 0
+				blockChange = true
+				get_node("charCd").start()
 		if (animal_2):
 			if (actual_animal != 1):
 				actual_animal = 1
 				sprite.set_texture(toad)
+				get_node("charCd").start()
+				blockChange = true
 		if (animal_3):
 			if (actual_animal != 2):
 				actual_animal = 2
 				sprite.set_texture(goat)
+				get_node("charCd").start()
+				blockChange = true
 
 
 	get_node("stamina1").set_value(stamina[0])
 	get_node("stamina2").set_value(stamina[1])
 	get_node("stamina3").set_value(stamina[2])
-	
+
 	
 	# Salto
 	if (jump and not jumping):
@@ -158,6 +168,8 @@ func _fixed_process(delta):
 				sprite.set_texture(goat)
 				actual_animal = 2
 				
+		
+		
 func _exit_tree():
 	get_node("/root/global").distance_travelled = distance
 
@@ -165,6 +177,7 @@ func _ready():
 	# Initalization here
 	get_node("sprite").set_texture(deer)
 	get_node("anim").play("running")
+	get_node("charCd").connect("timeout",self,"_unblock_change")
 	originalSpriteXPos  = get_node("sprite").get_pos().x
 	diferencialPosX = 0
 	actual_animal = 0
