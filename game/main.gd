@@ -46,6 +46,7 @@ func _fixed_process(delta):
 		get_node("terrain").queue_free()
 		var gameOverNode = gameOver.instance()
 		add_child(gameOverNode)
+		get_node("/root/global").screen_speed = get_node("/root/global").original_screen_speed
 		set_fixed_process(false)
 		
 	
