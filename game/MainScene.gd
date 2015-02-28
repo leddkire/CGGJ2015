@@ -103,7 +103,7 @@ func add_terrain_scene(terr):
 	posX = acumulado
 	
 #Revisar la optimizacion!!!
-func _fixed_process(delta):
+func _process(delta):
 	var pointOfErase
 	if tipoActual == 'montana' or tipoActual == 'pradera':
 		pointOfErase = 64
@@ -188,7 +188,7 @@ func _ready():
 	
 	#pos.x -= 80
 	#get_node("montanaPrueba").set_pos(pos)
-	set_fixed_process(true)
+	set_process(true)
 	
 
 

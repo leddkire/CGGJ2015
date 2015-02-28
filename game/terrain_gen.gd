@@ -75,6 +75,7 @@ func _process(delta):
 		
 	#Eliminar terreno fuera de pantalla y agregar otro
 	if(posicionPrimero.x <= -(anchoUnidadTerreno)):
+		terrenos[0].remove_from_group("Terrenos");
 		terrenos[0].free()
 		var node
 		if(tipoActual == 'agua'):

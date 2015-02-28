@@ -5,6 +5,7 @@ extends Node2D
 # var a=2
 # var b="textvar"
 
+
 var blockChange = false
 var posBlockBar = 100
 

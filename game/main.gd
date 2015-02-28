@@ -7,7 +7,7 @@ var dead = false
 
 var gameOver = preload("res://game/gameOver.scn")
 
-func _fixed_process(delta):
+func _process(delta):
 	if(not dead):
 		
 		var player = get_node("player")
@@ -46,11 +46,11 @@ func _fixed_process(delta):
 		get_node("terrain").queue_free()
 		var gameOverNode = gameOver.instance()
 		add_child(gameOverNode)
-		set_fixed_process(false)
+		set_process(false)
 		
 	
 	
 	
 func _ready():
-	set_fixed_process(true)
+	set_process(true)
 	pass

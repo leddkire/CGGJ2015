@@ -41,7 +41,7 @@ func _get_random():
 	random_arr[0] += 4
 	return random_arr[0]
 
-func _fixed_process(delta):
+func _process(delta):
 	var jump = Input.is_action_pressed("jump")
 	var animal_1 = Input.is_action_pressed("animal_1")
 	var animal_2 = Input.is_action_pressed("animal_2")
@@ -180,5 +180,5 @@ func _ready():
 	actual_animal = 0
 	max_stamina = 0
 	distance = 0
-	set_fixed_process(true)
+	set_process(true)
 	pass

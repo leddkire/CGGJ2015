@@ -10,20 +10,22 @@ var white = Color(0,0,0)
 var timer
 var maxH
 var actA
+var staminaBarImg = preload("res://images/life.png");
 
 func _draw():
 	actA = get_parent().get_parent().get_node("player").actual_animal
 	var staminaLeft = 0
 	if(actA < 3):
 		staminaLeft = get_parent().get_parent().get_node("player").stamina[actA]
-	var h = maxH * (staminaLeft/100)
-
-	draw_rect(Rect2(20,100,10,h),color)
-	update()
+	var h = staminaLeft/2
+	for i in range(h):
+		draw_texture(staminaBarImg,Vector2(20,100+(i*2)))
+	#draw_rect(Rect2(20,100,10,h),color)
+	
 
 
 func _process(delta):
-	_draw()
+	update()
 	
 func _ready():
 	var posBlockBar = get_parent().posBlockBar
