@@ -47,6 +47,8 @@ func _process(delta):
 		var gameOverNode = gameOver.instance()
 		add_child(gameOverNode)
 		set_process(false)
+		get_node("/root/global").screen_speed = get_node("/root/global").original_screen_speed
+
 		
 	
 	

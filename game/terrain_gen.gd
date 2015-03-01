@@ -92,6 +92,7 @@ func _process(delta):
 		pos.x += anchoUnidadTerreno
 		node.set_pos(pos)
 		numT-=1
+	velocidad = get_node("/root/global").screen_speed
 
 func _ready():
 	var rootView = get_tree().get_root().get_rect()

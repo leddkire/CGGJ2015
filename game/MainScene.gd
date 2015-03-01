@@ -151,6 +151,7 @@ func _process(delta):
 				
 	for i in paraBorrar:
 		i.free()
+	velocidad = get_node("/root/global").screen_speed
 	#set_fixed_process(true)
 	
 

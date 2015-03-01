@@ -16,11 +16,13 @@ var base_y = 0
 var random_seed = randf()
 var random_arr = [1, random_seed]
 var capybara_timeout = 0
+var last_distance = 0
 
 var STEP_DISTANCE = 0.1
 var AMOUNT_RECOVERY = 0.1
 var BASE_STAMINA_CONS = 0.2
 var stamina_factor = 1
+var DISTANCE_TO_GROW = 100
 
 
 #posicion original del sprite (para cuando se recupere el animal se pueda trasladar el sprite a este sitio.)
@@ -53,7 +55,13 @@ func _process(delta):
 	distance += STEP_DISTANCE
 	get_parent().get_node("UI/header/distance").set_text(str(int(distance)))
 	get_parent().get_node("UI/header/coins_label").set_text(str(int(coins_acum)))
-
+	
+	#Si se recorre cierta distancia, se incrementa la velocidad
+	if(distance-last_distance >= DISTANCE_TO_GROW):
+		get_node("/root/global").screen_speed += 0.1
+		last_distance = distance
+		BASE_STAMINA_CONS += 0.1
+	print(BASE_STAMINA_CONS)
 
 	var posXActual = get_node("sprite").get_pos().x
 	diferencialPosX = posXActual
