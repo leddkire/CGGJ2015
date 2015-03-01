@@ -44,6 +44,7 @@ func _process(delta):
 		get_node("player").queue_free()
 		get_node("StreamPlayer").queue_free()
 		get_node("terrain").queue_free()
+		get_node("Parallax").queue_free()
 		var gameOverNode = gameOver.instance()
 		add_child(gameOverNode)
 		set_process(false)

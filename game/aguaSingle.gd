@@ -1,8 +1,8 @@
 
 extends Node2D
 
-var watIn = preload("res://textures/waterIn.tex")
-var watOut = preload("res://textures/waterOut.tex")
+var watIn = preload("res://images/waterIn.png")
+var watOut = preload("res://images/waterOut.png")
 
 func move(cant):
 	var hijos = get_children()

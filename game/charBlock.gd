@@ -21,7 +21,7 @@ func _draw():
 		update()
 
 func _process(delta):
-	_draw()
+	update()
 
 
 

@@ -11,6 +11,7 @@ var posOfCreation = 0
 var terrenoPorAgregar = scenePradera
 var velocidad
 var numTMax
+var alturaTerr = 120
 
 func choose_terrain():
 	var random_terr = int(rand_range(0,2))
@@ -90,6 +91,7 @@ func _process(delta):
 		add_child(node)
 		var pos = terrenos[terrenos.size()-1].get_pos()
 		pos.x += anchoUnidadTerreno
+		pos.y = alturaTerr
 		node.set_pos(pos)
 		numT-=1
 	velocidad = get_node("/root/global").screen_speed
@@ -105,6 +107,7 @@ func _ready():
 		node.add_to_group("Terrenos")
 		var posi = node.get_pos()
 		posi.x += posOfCreation
+		posi.y = alturaTerr
 		posOfCreation += anchoUnidadTerreno
 		node.set_pos(posi)
 		add_child(node)

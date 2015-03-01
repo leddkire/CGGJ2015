@@ -6,6 +6,9 @@ var game = preload("res://game/mainScene.scn")
 var screen_speed = 1
 var original_screen_speed = 1
 
+var viewWidth
+
+
 func restart():
 	current_scene.queue_free()
 	current_scene= game.instance()
@@ -13,6 +16,8 @@ func restart():
 	
 func _ready():
 	#screen_speed = original_screen_speed
+	var rootView = get_tree().get_root().get_rect()
 	var root = get_tree().get_root()
+	viewWidth = rootView.size.width
 	current_scene = root.get_child(root.get_child_count()-1)
 	
