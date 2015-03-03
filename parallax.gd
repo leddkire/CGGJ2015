@@ -9,6 +9,12 @@ var mount1 = preload("res://images/mountains/mountain1.png")
 var mount2 = preload("res://images/mountains/mountain2.png")
 var mount3 = preload("res://images/mountains/mountain3.png")
 
+var cloudTexts = []
+var cloudTexts1= preload("res://images/clouds/cloud1.png")
+var cloudTexts2 = preload("res://images/clouds/cloud2.png")
+var	cloudTexts3 = preload("res://images/clouds/cloud3.png")
+
+
 var mount1Width = mount1.get_width()
 var mount2Width = mount2.get_width()
 var mount3Width = mount3.get_width()
@@ -17,13 +23,26 @@ var mount1List = []
 var mount2List = []
 var mount3List = []
 
+var cloud1List = []
+var cloud2List = []
+var cloud3List = []
+
 var altura = 196
+var cloudSpeed
 
 var mount1S
 var mount2S
 var mount3S
 
+var numClouds
+var genClouds = false
+
 var viewWidth
+
+class Cloud:
+	var pos = Vector2()
+	var tex = Resource
+	var speed = float()
 
 class Mountain:
 	var pos = Vector2()
@@ -40,6 +59,8 @@ func _draw():
 	for i in range(mount1List.size()-1):
 		draw_texture(mount1,mount1List[i].pos)
 	
+	for i in range(cloud1List.size()-1):
+		draw_texture(cloud1List[i].tex,cloud1List[i].pos)
 	
 	
 func _process(delta):
@@ -49,36 +70,71 @@ func _process(delta):
 	
 	for i in range(mount1List.size()-1):
 		mount1List[i].pos.x -= mount1S
-		if(mount1List[i].pos.x <= -mount1Width):
-			mount1List[i].pos.x = viewWidth + mount1Width
+		if(mount1List[0].pos.x <= -mount1Width):
+			mount1List.remove(0)
+			var m = Mountain.new()
+			m.pos = Vector2(mount1List[mount1List.size()-1].pos.x,altura)
+			mount1List.append(m)
 	
 	for i in range(mount2List.size()-1):
 		mount2List[i].pos.x -= mount2S
-		if(mount2List[i].pos.x <= -mount2Width):
-			mount2List[i].pos.x = viewWidth + mount2Width
+		if(mount2List[0].pos.x <= -mount2Width):
+			mount2List.remove(0)
+			var m = Mountain.new()
+			m.pos = Vector2(mount2List[mount2List.size()-1].pos.x,altura-12)
+			mount2List.append(m)
 		
 	for i in range(mount3List.size()-1):
 		mount3List[i].pos.x -= mount3S
-		if(mount3List[i].pos.x <= -mount3Width):
-			mount3List[i].pos.x = viewWidth + mount3Width
-		
+		if(mount3List[0].pos.x <= -mount3Width):
+			mount3List.remove(0)
+			var m = Mountain.new()
+			m.pos = Vector2(mount3List[mount3List.size()-1].pos.x,altura-30)
+			mount3List.append(m)
 	
-		
-	if(mount2List[0].pos.x <= -mount2Width):
-		mount2List[0].pos.x = mount2List[mount2List.size()-1].pos.x + mount2Width
-		
-	if(mount3List[0].pos.x <= -mount1Width):
-		mount3List[0].pos.x = mount3List[mount3List.size()-1].pos.x + mount3Width
 	
+	
+	#cloud Movement
+	var listToRemove = []
+	for i in range(cloud1List.size()-1):
+		cloud1List[i].pos.x -= cloud1List[i].speed
+		if(cloud1List[i].pos.x <= -150):
+			listToRemove.append(i)
+	
+	for i in range(listToRemove.size()-1):
+		cloud1List.remove(listToRemove[i])
+		
+	listToRemove.clear()
 	update()
+	
+	if(genClouds):
+		_genCloud()
+
+func _genCloud():
+	#cloud Generation
+	numClouds = rand_range(0,5)
+	for i in range(numClouds):
+		var c = Cloud.new()
+		c.pos = Vector2(416 + 20*int(rand_range(0,4)),20*int(rand_range(1,6)))
+		c.tex = cloudTexts[int(int(rand_range(0,100))%3)]
+		c.speed = cloudSpeed * rand_range(0.4,1)
+		cloud1List.append(c)
+	genClouds = false
+
+func _setGen():
+	genClouds = true
 
 func _ready():
+
+	cloudTexts.append(cloudTexts1)
+	cloudTexts.append(cloudTexts2)
+	cloudTexts.append(cloudTexts3)
+	get_node("CloudGenTimer").connect("timeout",self,"_setGen")
 	# Initalization here
 	viewWidth = get_node("/root/global").viewWidth
-	var mount1Count = viewWidth/mount1Width +3
-	var mount2Count = viewWidth/mount2Width + 3
-	var mount3Count = viewWidth/mount3Width + 4
-	
+	var mount1Count = viewWidth/mount1Width
+	var mount2Count = viewWidth/mount2Width
+	var mount3Count = viewWidth/mount3Width
 	for i in range(mount1Count):
 		var m = Mountain.new()
 		m.pos = Vector2(i*mount1Width,altura)
@@ -93,7 +149,7 @@ func _ready():
 		var m = Mountain.new()
 		m.pos = Vector2(i*mount3Width,altura-30)
 		mount3List.append(m)
-	
+	cloudSpeed = get_node("/root/global/").screen_speed
 	mount1S = get_node("/root/global").screen_speed *0.8
 	mount2S = mount1S * 0.6
 	mount3S = mount1S * 0.4
