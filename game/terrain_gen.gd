@@ -3,6 +3,7 @@ extends Node2D
 var sceneMontana = preload("res://game/montanaSingle.scn")
 var scenePradera = preload("res://game/praderaSingle.scn")
 var sceneAgua = preload("res://game/aguaSingle.scn")
+var platform = preload("res://game/platform.scn")
 var tipoActual = 'pradera'
 var numT = 0
 var terrainContainer = []
@@ -38,6 +39,13 @@ func choose_terrain():
 			tipoActual = 'agua'
 			#return tipoActual
 
+func put_platform():
+	var random_plat = int(rand_range(0,2))
+	if(random_plat == 0):
+		return true
+	else:
+		return false
+
 func where_am_i(pos):
 	var escenas = get_tree().get_nodes_in_group("Terrenos")
 	for escena in escenas:
@@ -64,7 +72,9 @@ func _process(delta):
 		numTMax = numT
 		
 	var terrenos = get_tree().get_nodes_in_group("Terrenos")
+	var platforms = get_tree().get_nodes_in_group("Platforms")
 	var posicionPrimero = terrenos[0].get_pos()
+	var posicionPrimeraPlatform = null
 	
 	
 	var pos
@@ -74,14 +84,21 @@ func _process(delta):
 		pos.x -= velocidad
 		terrenos[i].set_pos(pos)
 		
+	#Mover platforms
+	for i in range(platforms.size()):
+		pos = platforms[i].get_pos()
+		pos.x -= velocidad
+		platforms[i].set_pos(pos)
+		
 	#Eliminar terreno fuera de pantalla y agregar otro
 	if(posicionPrimero.x <= -(anchoUnidadTerreno)):
-		terrenos[0].remove_from_group("Terrenos");
+		terrenos[0].remove_from_group("Terrenos")
 		terrenos[0].free()
 		var node
 		if(tipoActual == 'agua'):
 			node = terrenoPorAgregar.instance()
 			if(numTMax == numT):
+				
 				node.set_sprite('first')
 			elif(numT == 1):
 				node.set_sprite('last')
@@ -94,6 +111,21 @@ func _process(delta):
 		pos.y = alturaTerr
 		node.set_pos(pos)
 		numT-=1
+		#Agregar plataforma
+		if(put_platform()):
+			var platf = get_parent().get_node("Platform").duplicate()
+			platf.set_type("agua")
+			platf.add_to_group("Platforms")
+			add_child(platf)
+		
+	#Se eliminan la primera plataforma si salio
+	if(platforms.size() > 0):
+		posicionPrimeraPlatform = platforms[0].get_pos()
+		if(posicionPrimeraPlatform.x <= -(anchoUnidadTerreno)):
+			platforms[0].remove_from_group("Platforms")
+			platforms[0].free()
+		
+		
 	velocidad = get_node("/root/global").screen_speed
 
 func _ready():
