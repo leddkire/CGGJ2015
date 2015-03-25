@@ -3,7 +3,7 @@ extends Node2D
 var sceneMontana = preload("res://game/montanaSingle.xml")
 var scenePradera = preload("res://game/praderaSingle.xml")
 var sceneAgua = preload("res://game/aguaSingle.xml")
-var platform = preload("res://game/platform.xml")
+#var platform = preload("res://game/platform.xml")
 var tipoActual = 'pradera'
 var numT = 0
 var terrainContainer = []

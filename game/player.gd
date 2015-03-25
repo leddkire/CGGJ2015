@@ -37,6 +37,8 @@ var capybaraId = numAnimals
 
 var screenW = 480
 
+var playedCapySound = false
+
 #posicion original del sprite (para cuando se recupere el animal se pueda trasladar el sprite a este sitio.)
 var originalSpriteXPos
 var originalSpriteYPos
@@ -207,10 +209,15 @@ func _process(delta):
 		var elem = coins[i]
 		var elem_pos = elem.get_pos()
 		if (elem_pos.x <= pos.x+10 and elem_pos.y <= pos.y+20 and elem_pos.y >= pos.y-15):
+			get_node("sounds").play("coin")
 			elem.queue_free()
 			coins_acum += 1
 
 	if (coins_acum % 20 == 0 and coins_acum != 0):
+		if(not playedCapySound):
+			get_node("sounds").play("capypowers")
+			playedCapySound = true
+		
 		sprite.set_texture(capybara)
 		actual_animal = capybaraId
 		capybara_timeout = 8
@@ -218,6 +225,7 @@ func _process(delta):
 	if (capybara_timeout > 0):
 		capybara_timeout -= delta
 		if (capybara_timeout <= 0):
+			playedCapySound=false
 			if (max_stamina == 0):
 				sprite.set_texture(deer)
 				actual_animal = 0
@@ -227,6 +235,7 @@ func _process(delta):
 			else:
 				sprite.set_texture(goat)
 				actual_animal = 2
+			
 				
 		
 		

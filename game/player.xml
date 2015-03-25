@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://game/volter.fnt" type="Font"></ext_resource>
+<resource_file type="PackedScene" subresource_count="8" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://game/player.gd" type="Script"></ext_resource>
+	<ext_resource path="res://sound/coin.wav" type="Sample"></ext_resource>
+	<ext_resource path="res://sound/capypowers.wav" type="Sample"></ext_resource>
+	<ext_resource path="res://game/volter.fnt" type="Font"></ext_resource>
 	<resource type="Animation" path="local://0">
 		<string name="resource/name"> "running" </string>
 		<real name="length"> 0.4 </real>
@@ -32,10 +34,29 @@
 		<vector2 name="extents"> 10, 10 </vector2>
 
 	</resource>
+	<resource type="SampleLibrary" path="local://2">
+		<dictionary name="samples/capypowers" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://sound/capypowers.wav">  </resource>
+		</dictionary>
+		<dictionary name="samples/coin" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://sound/coin.wav">  </resource>
+		</dictionary>
+
+	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="100">
+			<string_array  len="116">
 				<string> "Player" </string>
 				<string> "Node2D" </string>
 				<string> "_import_path" </string>
@@ -136,15 +157,31 @@
 				<string> "modulate" </string>
 				<string> "region" </string>
 				<string> "region_rect" </string>
+				<string> "sounds" </string>
+				<string> "SamplePlayer" </string>
+				<string> "config/voices" </string>
+				<string> "config/samples" </string>
+				<string> "default/volume_db" </string>
+				<string> "default/pitch_scale" </string>
+				<string> "default/pan" </string>
+				<string> "default/depth" </string>
+				<string> "default/height" </string>
+				<string> "default/filter/type" </string>
+				<string> "default/filter/cutoff" </string>
+				<string> "default/filter/resonance" </string>
+				<string> "default/filter/gain" </string>
+				<string> "default/reverb_room" </string>
+				<string> "default/reverb_send" </string>
+				<string> "default/chorus_send" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 11 </int>
+			<int> 12 </int>
 			<string> "variants" </string>
-			<array  len="42" shared="false">
+			<array  len="44" shared="false">
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
@@ -280,7 +317,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<node_path> ".." </node_path>
 				<resource  resource_type="Animation" path="local://0">  </resource>
@@ -315,9 +352,11 @@
 				<resource name=""></resource>				<int> 4 </int>
 				<color> 1, 1, 1, 1 </color>
 				<rect2> 0, 0, 0, 0 </rect2>
+				<resource  resource_type="SampleLibrary" path="local://2">  </resource>
+				<nil>  </nil>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="531"> 				-1, -1, 1, 0, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 1, 11, 7, 12, 8, 0, 0, 0, 14, 13, -1, 9, 2, 0, 15, 6, 16, 4, 17, 9, 18, 10, 19, 1, 20, 2, 21, 11, 22, 12, 0, 0, 0, 24, 23, -1, 25, 2, 0, 3, 13, 4, 2, 5, 2, 25, 14, 26, 15, 27, 16, 28, 17, 29, 0, 30, 0, 31, 0, 32, 0, 33, 13, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 20, 40, 2, 41, 4, 42, 2, 43, 13, 44, 13, 45, 1, 0, 0, 0, 24, 46, -1, 25, 2, 0, 3, 13, 4, 2, 5, 2, 25, 21, 26, 15, 27, 22, 28, 17, 29, 0, 30, 0, 31, 0, 32, 0, 33, 13, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 20, 40, 2, 41, 4, 42, 2, 43, 13, 44, 13, 45, 1, 0, 0, 0, 24, 47, -1, 25, 2, 0, 3, 13, 4, 2, 5, 2, 25, 23, 26, 15, 27, 24, 28, 17, 29, 0, 30, 0, 31, 0, 32, 0, 33, 13, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 20, 40, 2, 41, 4, 42, 2, 43, 13, 44, 13, 45, 1, 0, 0, 0, 49, 48, -1, 30, 2, 0, 3, 1, 4, 2, 5, 2, 25, 25, 26, 26, 27, 27, 28, 28, 29, 0, 30, 0, 31, 0, 32, 0, 33, 1, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 2, 40, 2, 41, 2, 42, 4, 43, 13, 44, 13, 50, 12, 51, 18, 52, 6, 53, 13, 54, 13, 55, 29, 0, 0, 0, 49, 56, -1, 30, 2, 0, 3, 1, 4, 2, 5, 2, 25, 30, 26, 26, 27, 31, 28, 28, 29, 0, 30, 0, 31, 0, 32, 0, 33, 1, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 2, 40, 2, 41, 2, 42, 4, 43, 13, 44, 13, 50, 12, 51, 18, 52, 6, 53, 13, 54, 13, 55, 29, 0, 0, 0, 58, 57, -1, 29, 2, 0, 3, 1, 4, 2, 5, 2, 6, 32, 7, 4, 8, 5, 9, 6, 10, 1, 59, 33, 60, 34, 61, 35, 62, 13, 63, 33, 64, 6, 65, 2, 66, 2, 67, 4, 68, 2, 69, 13, 70, 6, 71, 6, 72, 1, 73, 13, 74, 1, 75, 32, 76, 4, 77, 29, 78, 29, 0, 7, 0, 80, 79, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 32, 7, 4, 8, 5, 9, 6, 10, 1, 81, 34, 82, 13, 0, 7, 0, 83, 83, -1, 12, 2, 0, 3, 1, 4, 2, 5, 2, 6, 36, 7, 4, 8, 5, 9, 6, 10, 1, 84, 1, 85, 37, 86, 33, 0, 0, 0, 88, 87, -1, 20, 2, 0, 3, 1, 4, 2, 5, 2, 6, 32, 7, 4, 8, 5, 9, 6, 10, 1, 89, 38, 90, 1, 91, 32, 92, 13, 93, 13, 94, 33, 95, 39, 96, 6, 97, 40, 98, 13, 99, 41, 0 </int_array>
+			<int_array  len="568"> 				-1, -1, 1, 0, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 1, 11, 7, 12, 8, 0, 0, 0, 14, 13, -1, 9, 2, 0, 15, 6, 16, 4, 17, 9, 18, 10, 19, 1, 20, 2, 21, 11, 22, 12, 0, 0, 0, 24, 23, -1, 25, 2, 0, 3, 13, 4, 2, 5, 2, 25, 14, 26, 15, 27, 16, 28, 17, 29, 0, 30, 0, 31, 0, 32, 0, 33, 13, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 20, 40, 2, 41, 4, 42, 2, 43, 13, 44, 13, 45, 1, 0, 0, 0, 24, 46, -1, 25, 2, 0, 3, 13, 4, 2, 5, 2, 25, 21, 26, 15, 27, 22, 28, 17, 29, 0, 30, 0, 31, 0, 32, 0, 33, 13, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 20, 40, 2, 41, 4, 42, 2, 43, 13, 44, 13, 45, 1, 0, 0, 0, 24, 47, -1, 25, 2, 0, 3, 13, 4, 2, 5, 2, 25, 23, 26, 15, 27, 24, 28, 17, 29, 0, 30, 0, 31, 0, 32, 0, 33, 13, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 20, 40, 2, 41, 4, 42, 2, 43, 13, 44, 13, 45, 1, 0, 0, 0, 49, 48, -1, 30, 2, 0, 3, 1, 4, 2, 5, 2, 25, 25, 26, 26, 27, 27, 28, 28, 29, 0, 30, 0, 31, 0, 32, 0, 33, 1, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 2, 40, 2, 41, 2, 42, 4, 43, 13, 44, 13, 50, 12, 51, 18, 52, 6, 53, 13, 54, 13, 55, 29, 0, 0, 0, 49, 56, -1, 30, 2, 0, 3, 1, 4, 2, 5, 2, 25, 30, 26, 26, 27, 31, 28, 28, 29, 0, 30, 0, 31, 0, 32, 0, 33, 1, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 2, 40, 2, 41, 2, 42, 4, 43, 13, 44, 13, 50, 12, 51, 18, 52, 6, 53, 13, 54, 13, 55, 29, 0, 0, 0, 58, 57, -1, 29, 2, 0, 3, 1, 4, 2, 5, 2, 6, 32, 7, 4, 8, 5, 9, 6, 10, 1, 59, 33, 60, 34, 61, 35, 62, 13, 63, 33, 64, 6, 65, 2, 66, 2, 67, 4, 68, 2, 69, 13, 70, 6, 71, 6, 72, 1, 73, 13, 74, 1, 75, 32, 76, 4, 77, 29, 78, 29, 0, 7, 0, 80, 79, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 32, 7, 4, 8, 5, 9, 6, 10, 1, 81, 34, 82, 13, 0, 7, 0, 83, 83, -1, 12, 2, 0, 3, 1, 4, 2, 5, 2, 6, 36, 7, 4, 8, 5, 9, 6, 10, 1, 84, 1, 85, 37, 86, 33, 0, 0, 0, 88, 87, -1, 20, 2, 0, 3, 1, 4, 2, 5, 2, 6, 32, 7, 4, 8, 5, 9, 6, 10, 1, 89, 38, 90, 1, 91, 32, 92, 13, 93, 13, 94, 33, 95, 39, 96, 6, 97, 40, 98, 13, 99, 41, 0, 0, 0, 101, 100, -1, 15, 2, 0, 102, 33, 103, 42, 104, 4, 105, 2, 106, 4, 107, 4, 108, 4, 109, 43, 110, 43, 111, 43, 112, 43, 113, 18, 114, 4, 115, 4, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
