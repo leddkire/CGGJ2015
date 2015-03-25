@@ -6,7 +6,7 @@ var death_margin = -80
 
 var dead = false
 
-var gameOver = preload("res://game/gameOver.scn")
+var gameOver = preload("res://game/gameOver.xml")
 
 func _process(delta):
 	if(not dead):

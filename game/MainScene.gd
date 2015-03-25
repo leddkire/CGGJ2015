@@ -1,9 +1,9 @@
 
 extends Node2D
 #Montaña: 0, Agua: 1, Pradera: 2 
-var sceneMontana = load("res://game/montanaGen.scn")
-var scenePradera = load("res://game/praderaGen.scn")
-var sceneAgua = load("res://game/agua.scn")
+var sceneMontana = load("res://game/montanaGen.xml")
+var scenePradera = load("res://game/praderaGen.xml")
+var sceneAgua = load("res://game/agua.xml")
 #Variables que contienen la informacion de las escenas activas
 #Pos 0: tipo, pos 1: mitad, pos 2: nodo
 var nodos = []

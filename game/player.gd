@@ -2,7 +2,7 @@ var deer = preload("res://textures/deer.tex")
 var toad = preload("res://textures/toad.tex")
 var goat = preload("res://textures/goat.tex")
 var capybara = preload("res://textures/capybara.tex")
-var coin_scene = preload("res://game/coin.scn")
+var coin_scene = preload("res://game/coin.xml")
 var jumping = false
 # Factor de salto
 var alt = 1.2
