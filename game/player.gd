@@ -31,7 +31,11 @@ var direction = 0
 var DISTANCE_TO_GROW = 100
 var JUMP_FORCE = 100
 
+var numAnimals = 3
 
+var capybaraId = numAnimals
+
+var screenW = 480
 
 #posicion original del sprite (para cuando se recupere el animal se pueda trasladar el sprite a este sitio.)
 var originalSpriteXPos
@@ -91,7 +95,7 @@ func _process(delta):
 	diferencialPosX = posXActual
 	# Control de stamina
 	# Control de stamina
-	for i in range(3):
+	for i in range(numAnimals):
 		if (actual_animal != i):
 			if (stamina[i] < 100):
 				stamina[i] += AMOUNT_RECOVERY
@@ -119,6 +123,21 @@ func _process(delta):
 			if (stamina[i] <= 0):
 				diferencialPosX -= travelSpeed
 				get_node("sprite").set_pos(Vector2(diferencialPosX,0))
+	if(actual_animal == capybaraId):
+		if(posXActual < originalSpriteXPos):
+			diferencialPosX += recoverSpeed
+			if(diferencialPosX > originalSpriteXPos):
+				diferencialPosX = originalSpriteXPos
+		if(posXActual <= maxDistance and posXActual >= originalSpriteXPos):
+			diferencialPosX += travelSpeed
+			if(diferencialPosX < originalSpriteXPos):
+				diferencialPosX = originalSpriteXPos
+			elif(diferencialPosX > maxDistance):
+				diferencialPosX = maxDistance
+
+		get_node("sprite").set_pos(Vector2(diferencialPosX,0))
+	
+	
 	var blockChange = get_parent().get_node("UI").blockChange
 	# Cambio de sprites
 	# Cambio de sprites
@@ -176,9 +195,9 @@ func _process(delta):
 		new_coin.add_to_group("Coins")
 		var ran = _get_random()
 		if (ran < 6):
-			new_coin.set_pos(Vector2(240, 10))
+			new_coin.set_pos(Vector2(screenW, 10))
 		else:
-			new_coin.set_pos(Vector2(240, -16))
+			new_coin.set_pos(Vector2(screenW, -16))
 		add_child(new_coin)
 		coin_timeout = 1.5
 
@@ -193,7 +212,7 @@ func _process(delta):
 
 	if (coins_acum % 20 == 0 and coins_acum != 0):
 		sprite.set_texture(capybara)
-		actual_animal = 3
+		actual_animal = capybaraId
 		capybara_timeout = 8
 		
 	if (capybara_timeout > 0):
