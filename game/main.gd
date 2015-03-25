@@ -2,7 +2,8 @@ var FACTOR_MEDIO = 1
 var FACTOR_ALTO = 1.5
 var FACTOR_BAJO = 0.5
 
-var death_margin = -60
+var death_margin = -80
+
 var dead = false
 
 var gameOver = preload("res://game/gameOver.scn")
@@ -12,31 +13,40 @@ func _process(delta):
 		
 		var player = get_node("player")
 		var spritePosX = get_node("player/sprite").get_pos().x
-		if(spritePosX == death_margin):
+		if(spritePosX <= death_margin):
 			dead = true
 		var animal_actual = player.actual_animal
-		var terreno_actual = get_node("terrain").where_am_i(player.get_pos().x)
+		var terreno_actual = get_node("terrain").where_am_i(spritePosX+player.get_pos().x)
 		if (terreno_actual == "montana"):
 			if(animal_actual == 0):
 				player.stamina_factor = FACTOR_ALTO
+				player.direction = -1
 			if(animal_actual == 1):
 				player.stamina_factor = FACTOR_MEDIO
+				player.direction = -1
 			if(animal_actual == 2):
 				player.stamina_factor = FACTOR_BAJO
+				player.direction = 1
 		elif (terreno_actual == "agua"):
 			if(animal_actual == 0):
 				player.stamina_factor = FACTOR_MEDIO
+				player.direction = -1
 			if(animal_actual == 1):
 				player.stamina_factor = FACTOR_BAJO
+				player.direction = 1
 			if(animal_actual == 2):
 				player.stamina_factor = FACTOR_ALTO
+				player.direction = -1
 		elif (terreno_actual == "pradera"):
 			if(animal_actual == 0):
 				player.stamina_factor = FACTOR_BAJO
+				player.direction = 1
 			if(animal_actual == 1):
 				player.stamina_factor = FACTOR_ALTO
+				player.direction = -1
 			if(animal_actual == 2):
 				player.stamina_factor = FACTOR_MEDIO
+				player.direction = -1
 		
 	if(dead):
 		

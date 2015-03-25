@@ -27,19 +27,23 @@ var STEP_DISTANCE = 0.1
 var AMOUNT_RECOVERY = 0.1
 var BASE_STAMINA_CONS = 0.2
 var stamina_factor = 1
+var direction = 0
 var DISTANCE_TO_GROW = 100
 var JUMP_FORCE = 100
+
 
 
 #posicion original del sprite (para cuando se recupere el animal se pueda trasladar el sprite a este sitio.)
 var originalSpriteXPos
 var originalSpriteYPos
-#Velocidad en la que el animal se retrasa cuando esta cansado
-var tiredSpeed = 0.5
+#Velocidad en la que el animal se traslada a traves de la pantalla
+var travelSpeed = 0.5
 #Velocidad de recuperacion
 var recoverSpeed = 2
 #Variable que guarda la diferencia entre la posicion actual y el traslado que se le hara
 var diferencialPosX
+#Variable que determina que tanto se puede adelantar el jugador cuando esta utilizando bien las mecanicas de terreno
+var maxDistance = 80
 
 
 
@@ -83,7 +87,6 @@ func _process(delta):
 		get_node("/root/global").screen_speed += 0.1
 		last_distance = distance
 		BASE_STAMINA_CONS += 0.1
-	print(BASE_STAMINA_CONS)
 	var posXActual = get_node("sprite").get_pos().x
 	diferencialPosX = posXActual
 	# Control de stamina
@@ -101,9 +104,20 @@ func _process(delta):
 				#Si esta mas atras de la posicion original del sprite, se traslada hasta estar ahi
 				if(posXActual < originalSpriteXPos):
 					diferencialPosX += recoverSpeed
-					get_node("sprite").set_pos(Vector2(diferencialPosX,0))
+					if(diferencialPosX > originalSpriteXPos):
+						diferencialPosX = originalSpriteXPos
+						
+				if(posXActual <= maxDistance and posXActual >= originalSpriteXPos):
+					diferencialPosX += travelSpeed*direction
+					if(diferencialPosX < originalSpriteXPos):
+						diferencialPosX = originalSpriteXPos
+					elif(diferencialPosX > maxDistance):
+						diferencialPosX = maxDistance
+
+				get_node("sprite").set_pos(Vector2(diferencialPosX,0))
+				
 			if (stamina[i] <= 0):
-				diferencialPosX -= tiredSpeed
+				diferencialPosX -= travelSpeed
 				get_node("sprite").set_pos(Vector2(diferencialPosX,0))
 	var blockChange = get_parent().get_node("UI").blockChange
 	# Cambio de sprites

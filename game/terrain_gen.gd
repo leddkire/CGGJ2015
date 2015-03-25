@@ -51,14 +51,21 @@ func where_am_i(pos):
 	for escena in escenas:
 		var tipo = escena.get_type()
 		var posicion = escena.get_pos()
-		if tipo == 'montana' or tipo == 'pradera':
-			if posicion.x-32<=pos<=posicion.x+32:
-				return tipo
-		else:
-			if posicion.x-96<=pos<=posicion.x+96:
-				return tipo
+		
+		if posicion.x<=pos<posicion.x+1:
+			print(posicion.x)
+			return tipo
+		
+
+#func _draw():
+#	var escenas = get_tree().get_nodes_in_group("Terrenos")
+#	for escena in escenas:
+#		var posicion = escena.get_pos()
+#		draw_rect(Rect2(posicion.x,posicion.y,5,100),Color(255,0,0))
+	
 
 func _process(delta):
+	#update()
 	if(numT == 0):
 		choose_terrain()
 		
@@ -112,11 +119,11 @@ func _process(delta):
 		node.set_pos(pos)
 		numT-=1
 		#Agregar plataforma
-		if(put_platform()):
-			var platf = get_parent().get_node("Platform").duplicate()
-			platf.set_type("agua")
-			platf.add_to_group("Platforms")
-			add_child(platf)
+		#if(put_platform()):
+		#	var platf = get_parent().get_node("Platform").duplicate()
+		#	platf.set_type("agua")
+		#	platf.add_to_group("Platforms")
+		#	add_child(platf)
 		
 	#Se eliminan la primera plataforma si salio
 	if(platforms.size() > 0):
