@@ -14,6 +14,11 @@ var velocidad
 var numTMax
 var alturaTerr = 120
 
+#variables de prueba
+var draw_check = false
+var draw_lines = false
+var draw_check_x = 0
+
 func choose_terrain():
 	var random_terr = int(rand_range(0,2))
 	#Todas las posibilidades que pueden ser para elegir terreno.
@@ -51,17 +56,39 @@ func where_am_i(pos):
 	for escena in escenas:
 		var tipo = escena.get_type()
 		var posicion = escena.get_pos()
-		
-		if posicion.x<=pos<posicion.x+1:
-			print(posicion.x)
+		print(posicion.x)
+		if (posicion.x<=pos and pos<posicion.x+64):
+			#Dibujar momento de "colision" con terreno
+			#draw_check = true
+			#draw_check_x = posicion.x
+			
 			return tipo
 		
 
-#func _draw():
-#	var escenas = get_tree().get_nodes_in_group("Terrenos")
-#	for escena in escenas:
-#		var posicion = escena.get_pos()
-#		draw_rect(Rect2(posicion.x,posicion.y,5,100),Color(255,0,0))
+func _draw():
+	var escenas = get_tree().get_nodes_in_group("Terrenos")
+	
+		
+	for escena in escenas:
+		var tipo = escena.get_type()
+		var posicion = escena.get_pos()
+		#Dibujo de rectangulos para debugging
+		if(draw_check):
+			if(tipo == 'pradera'): 
+				draw_rect(Rect2(draw_check_x,150,50,2),Color(0,255,0))
+			if(tipo == 'agua'):
+				draw_rect(Rect2(draw_check_x,150,50,2),Color(0,0,255))
+			if(tipo == 'montana'):
+				draw_rect(Rect2(draw_check_x,150,50,2),Color(255,0,0))
+			draw_check =false
+		if(draw_lines):
+			if(tipo == 'pradera'):
+				draw_rect(Rect2(posicion.x,posicion.y,2,100),Color(0,255,0))
+			if(tipo == 'agua'):
+				draw_rect(Rect2(posicion.x,posicion.y,2,100),Color(0,0,255))
+			if(tipo == 'montana'):
+				draw_rect(Rect2(posicion.x,posicion.y,2,100),Color(255,0,0))
+		
 	
 
 func _process(delta):
@@ -138,7 +165,7 @@ func _process(delta):
 func _ready():
 	var rootView = get_tree().get_root().get_rect()
 	var viewWidth = rootView.size.width
-	var numTerrainInit = int(viewWidth/64)+2
+	var numTerrainInit = int(viewWidth/64)
 	var node
 	velocidad = get_node("/root/global").screen_speed
 	while numTerrainInit > 0:

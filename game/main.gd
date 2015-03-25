@@ -8,6 +8,7 @@ var dead = false
 
 var gameOver = preload("res://game/gameOver.xml")
 
+
 func _process(delta):
 	if(not dead):
 		
@@ -16,7 +17,7 @@ func _process(delta):
 		if(spritePosX <= death_margin):
 			dead = true
 		var animal_actual = player.actual_animal
-		var terreno_actual = get_node("terrain").where_am_i(spritePosX+player.get_pos().x)
+		var terreno_actual = get_node("terrain").where_am_i(player.get_pos().x + spritePosX)
 		if (terreno_actual == "montana"):
 			if(animal_actual == 0):
 				player.stamina_factor = FACTOR_ALTO

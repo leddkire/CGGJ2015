@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="19" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://parallax.gd" type="Script"></ext_resource>
-	<ext_resource path="res://game/platformMain.gd" type="Script"></ext_resource>
-	<ext_resource path="res://game/charBlock.gd" type="Script"></ext_resource>
-	<ext_resource path="res://game/staminaBarDraw.gd" type="Script"></ext_resource>
-	<ext_resource path="res://game/player.xml" type="PackedScene"></ext_resource>
 	<ext_resource path="res://game/mainTheme.xml" type="PackedScene"></ext_resource>
+	<ext_resource path="res://game/player.xml" type="PackedScene"></ext_resource>
 	<ext_resource path="res://game/volter.fnt" type="Font"></ext_resource>
-	<ext_resource path="res://images/iconGoat.png" type="Texture"></ext_resource>
-	<ext_resource path="res://images/iconDeer.png" type="Texture"></ext_resource>
-	<ext_resource path="res://textures/coins.tex" type="Texture"></ext_resource>
-	<ext_resource path="res://images/GAMEOVER.png" type="Texture"></ext_resource>
 	<ext_resource path="res://images/iconToad.png" type="Texture"></ext_resource>
 	<ext_resource path="res://textures/header.tex" type="Texture"></ext_resource>
+	<ext_resource path="res://textures/coins.tex" type="Texture"></ext_resource>
+	<ext_resource path="res://images/iconGoat.png" type="Texture"></ext_resource>
+	<ext_resource path="res://images/iconDeer.png" type="Texture"></ext_resource>
+	<ext_resource path="res://images/GAMEOVER.png" type="Texture"></ext_resource>
+	<ext_resource path="res://game/charBlock.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/main.gd" type="Script"></ext_resource>
-	<ext_resource path="res://game/UI.gd" type="Script"></ext_resource>
+	<ext_resource path="res://game/staminaBarDraw.gd" type="Script"></ext_resource>
+	<ext_resource path="res://game/platformMain.gd" type="Script"></ext_resource>
+	<ext_resource path="res://parallax.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/terrain_gen.gd" type="Script"></ext_resource>
+	<ext_resource path="res://game/UI.gd" type="Script"></ext_resource>
 	<resource type="RectangleShape2D" path="local://0">
 		<real name="custom_solver_bias"> 0 </real>
 		<vector2 name="extents"> 29, 10 </vector2>
@@ -273,7 +273,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<resource  resource_type="Script" path="res://parallax.gd">  </resource>
 				<dictionary  shared="false">
@@ -439,22 +439,22 @@
 							<real> 0.628319 </real>
 							<string> "fov" </string>
 							<real> 45 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_show_subtree" </string>
@@ -571,22 +571,22 @@
 							<real> 0.628319 </real>
 							<string> "fov" </string>
 							<real> 45 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>

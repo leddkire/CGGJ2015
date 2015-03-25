@@ -51,6 +51,12 @@ var diferencialPosX
 #Variable que determina que tanto se puede adelantar el jugador cuando esta utilizando bien las mecanicas de terreno
 var maxDistance = 80
 
+#Variables de debugging
+#Variable que elimina stamina (para probar cosas)
+var godMode = false
+#Variable para decirle al programa que dibuje la posicion del jugador
+var drawPlayerPos = false
+
 
 
 func _get_random():
@@ -77,7 +83,14 @@ func check(name):
 		
 	return output_state
 
+func _draw():
+	if(drawPlayerPos):
+		var sprite = get_node("sprite")
+		var pos = sprite.get_pos()
+		draw_rect(Rect2(pos.x,pos.y,5,100),Color(0,0,255))
+
 func _process(delta):
+	#update()
 	var jump = Input.is_action_pressed("jump")
 	var animal_1 = Input.is_action_pressed("animal_1")
 	var animal_2 = Input.is_action_pressed("animal_2")
@@ -106,7 +119,8 @@ func _process(delta):
 		else:
 			#Si el stamina del animal actual es mayor a 0, restarle stamina
 			if(stamina[i] > 0):
-				stamina[i] -= BASE_STAMINA_CONS * stamina_factor
+				if(not godMode):
+					stamina[i] -= BASE_STAMINA_CONS * stamina_factor
 				#Si esta mas atras de la posicion original del sprite, se traslada hasta estar ahi
 				if(posXActual < originalSpriteXPos):
 					diferencialPosX += recoverSpeed
@@ -208,7 +222,7 @@ func _process(delta):
 	for i in range(coins.size()):
 		var elem = coins[i]
 		var elem_pos = elem.get_pos()
-		if (elem_pos.x <= pos.x+10 and elem_pos.y <= pos.y+20 and elem_pos.y >= pos.y-15):
+		if (elem_pos.x <= diferencialPosX+10 and elem_pos.y <= pos.y+20 and elem_pos.y >= pos.y-15):
 			get_node("sounds").play("coin")
 			elem.queue_free()
 			coins_acum += 1
