@@ -5,14 +5,14 @@ extends Node2D
 # var a=2
 # var b="textvar"
 
-var mount1 = load("res://images/mountains/mountain1.png")
-var mount2 = load("res://images/mountains/mountain2.png")
-var mount3 = load("res://images/mountains/mountain3.png")
+var mount1 = load("res://images/Mountains/mountain1.png")
+var mount2 = load("res://images/Mountains/mountain2.png")
+var mount3 = load("res://images/Mountains/mountain3.png")
 
 var cloudTexts = []
-var cloudTexts1= load("res://images/clouds/cloud1.png")
-var cloudTexts2 = load("res://images/clouds/cloud2.png")
-var	cloudTexts3 = load("res://images/clouds/cloud3.png")
+var cloudTexts1= load("res://images/Clouds/cloud1.png")
+var cloudTexts2 = load("res://images/Clouds/cloud2.png")
+var	cloudTexts3 = load("res://images/Clouds/cloud3.png")
 
 
 var mount1Width = mount1.get_width()

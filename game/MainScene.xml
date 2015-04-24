@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="19" version="1.1" version_name="Godot Engine v1.1.beta1.42d41a3fbc">
-	<ext_resource path="res://game/player.xml" type="PackedScene"></ext_resource>
-	<ext_resource path="res://game/mainTheme.xml" type="PackedScene"></ext_resource>
-	<ext_resource path="res://textures/header.tex" type="Texture"></ext_resource>
-	<ext_resource path="res://images/iconToad.png" type="Texture"></ext_resource>
-	<ext_resource path="res://textures/coins.tex" type="Texture"></ext_resource>
-	<ext_resource path="res://images/iconGoat.png" type="Texture"></ext_resource>
 	<ext_resource path="res://images/iconDeer.png" type="Texture"></ext_resource>
+	<ext_resource path="res://images/iconGoat.png" type="Texture"></ext_resource>
+	<ext_resource path="res://textures/header.tex" type="Texture"></ext_resource>
 	<ext_resource path="res://images/GAMEOVER.png" type="Texture"></ext_resource>
-	<ext_resource path="res://game/charBlock.gd" type="Script"></ext_resource>
+	<ext_resource path="res://textures/coins.tex" type="Texture"></ext_resource>
+	<ext_resource path="res://images/iconToad.png" type="Texture"></ext_resource>
 	<ext_resource path="res://game/staminaBarDraw.gd" type="Script"></ext_resource>
-	<ext_resource path="res://parallax.gd" type="Script"></ext_resource>
-	<ext_resource path="res://game/main.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/platformMain.gd" type="Script"></ext_resource>
-	<ext_resource path="res://game/terrain_gen.gd" type="Script"></ext_resource>
+	<ext_resource path="res://game/main.gd" type="Script"></ext_resource>
+	<ext_resource path="res://game/charBlock.gd" type="Script"></ext_resource>
+	<ext_resource path="res://parallax.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/UI.gd" type="Script"></ext_resource>
+	<ext_resource path="res://game/terrain_gen.gd" type="Script"></ext_resource>
+	<ext_resource path="res://game/mainTheme.xml" type="PackedScene"></ext_resource>
+	<ext_resource path="res://game/player.xml" type="PackedScene"></ext_resource>
 	<ext_resource path="res://game/volter.fnt" type="Font"></ext_resource>
 	<resource type="RectangleShape2D" path="local://1">
 		<real name="custom_solver_bias"> 0 </real>
@@ -147,7 +147,7 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 1 </int>
+							<int> 7 </int>
 							<string> "sources" </string>
 							<array  len="10" shared="false">
 								<string> "res://game/MainScene.gd" </string>
@@ -380,10 +380,6 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -451,8 +447,12 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
 							<string> "default_light" </string>
@@ -512,10 +512,6 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -583,8 +579,12 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
 							<string> "default_light" </string>

@@ -56,7 +56,6 @@ func where_am_i(pos):
 	for escena in escenas:
 		var tipo = escena.get_type()
 		var posicion = escena.get_pos()
-		print(posicion.x)
 		if (posicion.x<=pos and pos<posicion.x+64):
 			#Dibujar momento de "colision" con terreno
 			#draw_check = true

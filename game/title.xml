@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="3" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
+<resource_file type="PackedScene" subresource_count="3" version="1.1" version_name="Godot Engine v1.1.beta1.42d41a3fbc">
 	<ext_resource path="res://images/fancy2.png" type="Texture"></ext_resource>
-	<resource type="GDScript" path="local://0">
-		<string name="script/source"> "var opac = 0&#000a;var timeout = 3&#000a;var main_scene&#000a;&#000a;func _fixed_process(delta):&#000a;&#0009;if(timeout &lt;0):&#000a;&#0009;&#0009;opac += delta&#000a;&#0009;&#0009;get_node(&quot;logo&quot;).set_opacity(opac)&#000a;&#0009;&#0009;timeout -= delta&#000a;&#0009;if(Input.is_action_pressed(&quot;jump&quot;)):&#000a;&#0009;&#0009;var main = main_scene.instance()&#000a;&#0009;&#0009;get_node(&quot;logo&quot;).hide()&#000a;&#0009;&#0009;add_child(main)&#000a;&#0009;&#0009;set_fixed_process(false)&#000a;&#000a;func _ready():&#000a;&#0009;var opac = 0&#000a;&#0009;main_scene= preload(&quot;res://game/MainScene.xml&quot;)&#000a;&#0009;set_fixed_process(true)" </string>
+	<resource type="GDScript" path="local://1">
+		<string name="script/source"> "var opac = 0&#000a;var timeout = 3&#000a;var main_scene&#000a;&#000a;func _fixed_process(delta):&#000a;&#0009;if(timeout &lt;0):&#000a;&#0009;&#0009;opac += delta&#000a;&#0009;&#0009;get_node(&quot;logo&quot;).set_opacity(opac)&#000a;&#0009;&#0009;timeout -= delta&#000a;&#0009;if(Input.is_action_pressed(&quot;jump&quot;)):&#000a;&#0009;&#0009;var main = main_scene.instance()&#000a;&#0009;&#0009;get_node(&quot;logo&quot;).hide()&#000a;&#0009;&#0009;add_child(main)&#000a;&#0009;&#0009;set_fixed_process(false)&#000a;&#000a;func _ready():&#000a;&#0009;var opac = 0&#000a;&#0009;main_scene= load(&quot;res://game/MainScene.xml&quot;)&#000a;&#0009;set_fixed_process(true)" </string>
 
 	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="26">
+			<string_array  len="27">
 				<string> "TitleScreen" </string>
 				<string> "Node2D" </string>
 				<string> "_import_path" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
+				<string> "visibility/light_mask" </string>
 				<string> "transform/pos" </string>
 				<string> "transform/rot" </string>
 				<string> "transform/scale" </string>
@@ -47,11 +48,12 @@
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
+				<int> 1 </int>
 				<vector2> 0, 0 </vector2>
 				<real> 0 </real>
 				<vector2> 1, 1 </vector2>
 				<int> 0 </int>
-				<resource  resource_type="Script" path="local://0">  </resource>
+				<resource  resource_type="Script" path="local://1">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -61,21 +63,33 @@
 							<int> 0 </int>
 							<string> "sources" </string>
 							<array  len="1" shared="false">
-								<node_path> "/root/EditorNode/@Panel3/@VBoxContainer6/@HSplitContainer8/@VSplitContainer9/@VSplitContainer10/@VBoxContainer11/@Panel16/@Control18/@CanvasItemEditor5850/@VSplitContainer5804/@HSplitContainer5805/@Control5806/@Control5807/@Viewport5808/TitleScreen" </node_path>
+								<node_path> "/root/EditorNode/@Panel3/@VBoxContainer6/@HSplitContainer8/@VSplitContainer9/@VSplitContainer10/@VBoxContainer11/@Panel16/@Control18/@CanvasItemEditor5886/@VSplitContainer5811/@HSplitContainer5812/@Control5813/@Control5814/@Viewport5815/TitleScreen" </node_path>
 							</array>
 						</dictionary>
 						<string> "2D" </string>
 						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
+							<string> "snap_pixel" </string>
 							<bool> False </bool>
+							<string> "snap_rotation_step" </string>
+							<real> 0.261799 </real>
 							<string> "zoom" </string>
 							<real> 1.360374 </real>
-							<string> "use_snap" </string>
+							<string> "snap_step" </string>
+							<vector2> 10, 10 </vector2>
+							<string> "snap_relative" </string>
 							<bool> False </bool>
+							<string> "snap_grid" </string>
+							<bool> False </bool>
+							<string> "snap_rotation_offset" </string>
+							<real> 0 </real>
+							<string> "snap_show_grid" </string>
+							<bool> False </bool>
+							<string> "snap_offset" </string>
+							<vector2> 0, 0 </vector2>
 							<string> "ofs" </string>
 							<vector2> -117.951, -50.7364 </vector2>
-							<string> "snap" </string>
-							<int> 10 </int>
+							<string> "snap_rotation" </string>
+							<bool> False </bool>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -184,12 +198,11 @@
 				<vector2> 2, 2 </vector2>
 				<resource  resource_type="Texture" path="res://images/fancy2.png">  </resource>
 				<bool> False </bool>
-				<int> 1 </int>
 				<color> 1, 1, 1, 1 </color>
 				<rect2> 0, 0, 0, 0 </rect2>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="76"> 				-1, -1, 1, 0, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 1, 11, 7, 12, 8, 0, 0, 0, 14, 13, -1, 20, 2, 0, 3, 1, 4, 4, 5, 2, 6, 9, 7, 4, 8, 10, 9, 6, 10, 1, 15, 11, 16, 1, 17, 3, 18, 12, 19, 12, 20, 13, 21, 13, 22, 6, 23, 14, 24, 12, 25, 15, 0 </int_array>
+			<int_array  len="80"> 				-1, -1, 1, 0, -1, 12, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 1, 12, 8, 13, 9, 0, 0, 0, 15, 14, -1, 21, 2, 0, 3, 1, 4, 5, 5, 2, 6, 3, 7, 10, 8, 5, 9, 11, 10, 7, 11, 1, 16, 12, 17, 1, 18, 4, 19, 13, 20, 13, 21, 3, 22, 3, 23, 7, 24, 14, 25, 13, 26, 15, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
