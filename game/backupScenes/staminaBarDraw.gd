@@ -10,7 +10,7 @@ var white = Color(0,0,0)
 var timer
 var maxH
 var actA
-var staminaBarImg = preload("res://images/life.png");
+var staminaBarImg = preload("res://game/ui/life.png");
 
 func _draw():
 	actA = get_parent().get_parent().get_node("player").actual_animal

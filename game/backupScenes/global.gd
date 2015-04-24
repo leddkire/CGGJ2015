@@ -2,7 +2,7 @@ extends Node
 
 var distance_travelled = 0
 var current_scene
-var game = load("res://game/mainScene/MainScene.xml")
+var game = load("res://game/MainScene.xml")
 var screen_speed = 1
 var original_screen_speed = 1
 

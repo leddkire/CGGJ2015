@@ -1,8 +1,10 @@
-var deer = load("res://textures/deer.tex")
-var toad = load("res://textures/toad.tex")
-var goat = load("res://textures/goat.tex")
-var capybara = load("res://textures/capybara.tex")
-var coin_scene = load("res://game/coin.xml")
+extends KinematicBody2D
+
+var deer = load("res://game/player/deer.png")
+var toad = load("res://game/player/toad.png")
+var goat = load("res://game/player/goat.png")
+var capybara = load("res://game/player/capybara.png")
+var coin_scene = load("res://game/coin/coin.xml")
 var jumping = false
 # Factor de salto
 var alt = 1.2

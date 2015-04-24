@@ -1,8 +1,8 @@
 extends Node2D
 
-var sceneMontana = load("res://game/montanaSingle.xml")
-var scenePradera = load("res://game/praderaSingle.xml")
-var sceneAgua = load("res://game/aguaSingle.xml")
+var sceneMontana = load("res://game/montana/montanaSingle.xml")
+var scenePradera = load("res://game/pradera/praderaSingle.xml")
+var sceneAgua = load("res://game/agua/aguaSingle.xml")
 #var platform = preload("res://game/platform.xml")
 var tipoActual = 'pradera'
 var numT = 0

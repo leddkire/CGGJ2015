@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="8" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://game/player.gd" type="Script"></ext_resource>
-	<ext_resource path="res://sound/coin.wav" type="Sample"></ext_resource>
+<resource_file type="PackedScene" subresource_count="8" version="1.1" version_name="Godot Engine v1.1.beta1.42d41a3fbc">
 	<ext_resource path="res://sound/capypowers.wav" type="Sample"></ext_resource>
+	<ext_resource path="res://sound/coin.wav" type="Sample"></ext_resource>
+	<ext_resource path="res://game/player.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/volter.fnt" type="Font"></ext_resource>
-	<resource type="Animation" path="local://0">
+	<resource type="Animation" path="local://1">
 		<string name="resource/name"> "running" </string>
 		<real name="length"> 0.4 </real>
 		<bool name="loop"> True </bool>
@@ -29,11 +29,6 @@
 		</dictionary>
 
 	</resource>
-	<resource type="RectangleShape2D" path="local://1">
-		<real name="custom_solver_bias"> 0 </real>
-		<vector2 name="extents"> 10, 10 </vector2>
-
-	</resource>
 	<resource type="SampleLibrary" path="local://2">
 		<dictionary name="samples/capypowers" shared="false">
 			<string> "db" </string>
@@ -53,21 +48,35 @@
 		</dictionary>
 
 	</resource>
+	<resource type="RectangleShape2D" path="local://3">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2 name="extents"> 10, 10 </vector2>
+
+	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="116">
+			<string_array  len="99">
 				<string> "Player" </string>
-				<string> "Node2D" </string>
+				<string> "KinematicBody2D" </string>
 				<string> "_import_path" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
+				<string> "visibility/light_mask" </string>
 				<string> "transform/pos" </string>
 				<string> "transform/rot" </string>
 				<string> "transform/scale" </string>
 				<string> "z/z" </string>
 				<string> "z/relative" </string>
+				<string> "input/pickable" </string>
+				<string> "shape_count" </string>
+				<string> "layers" </string>
+				<string> "collide_with/static" </string>
+				<string> "collide_with/kinematic" </string>
+				<string> "collide_with/rigid" </string>
+				<string> "collide_with/character" </string>
+				<string> "collision/margin" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
 				<string> "anim" </string>
@@ -114,36 +123,6 @@
 				<string> "uppercase" </string>
 				<string> "percent_visible" </string>
 				<string> "coins_label" </string>
-				<string> "rigid" </string>
-				<string> "RigidBody2D" </string>
-				<string> "shape_count" </string>
-				<string> "shapes/0/shape" </string>
-				<string> "shapes/0/transform" </string>
-				<string> "shapes/0/trigger" </string>
-				<string> "layers" </string>
-				<string> "mode" </string>
-				<string> "mass" </string>
-				<string> "friction" </string>
-				<string> "bounce" </string>
-				<string> "gravity_scale" </string>
-				<string> "custom_integrator" </string>
-				<string> "continuous_cd" </string>
-				<string> "contacts_reported" </string>
-				<string> "contact_monitor" </string>
-				<string> "sleeping" </string>
-				<string> "can_sleep" </string>
-				<string> "velocity/linear" </string>
-				<string> "velocity/angular" </string>
-				<string> "damp_override/linear" </string>
-				<string> "damp_override/angular" </string>
-				<string> "colision" </string>
-				<string> "CollisionShape2D" </string>
-				<string> "shape" </string>
-				<string> "trigger" </string>
-				<string> "RayCast2D" </string>
-				<string> "enabled" </string>
-				<string> "cast_to" </string>
-				<string> "layer_mask" </string>
 				<string> "sprite" </string>
 				<string> "Sprite" </string>
 				<string> "texture" </string>
@@ -173,22 +152,29 @@
 				<string> "default/reverb_room" </string>
 				<string> "default/reverb_send" </string>
 				<string> "default/chorus_send" </string>
+				<string> "colision" </string>
+				<string> "CollisionShape2D" </string>
+				<string> "shape" </string>
+				<string> "trigger" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 12 </int>
+			<int> 10 </int>
 			<string> "variants" </string>
-			<array  len="44" shared="false">
+			<array  len="42" shared="false">
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
+				<int> 1 </int>
 				<vector2> 35, 76 </vector2>
 				<real> 0 </real>
 				<vector2> 1, 1 </vector2>
 				<int> 0 </int>
+				<bool> False </bool>
+				<real> 0.08 </real>
 				<resource  resource_type="Script" path="res://game/player.gd">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -205,16 +191,28 @@
 						</dictionary>
 						<string> "2D" </string>
 						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
+							<string> "snap_pixel" </string>
 							<bool> False </bool>
+							<string> "snap_rotation_step" </string>
+							<real> 0.261799 </real>
 							<string> "zoom" </string>
 							<real> 0.814506 </real>
-							<string> "use_snap" </string>
+							<string> "snap_step" </string>
+							<vector2> 10, 10 </vector2>
+							<string> "snap_relative" </string>
 							<bool> False </bool>
+							<string> "snap_grid" </string>
+							<bool> False </bool>
+							<string> "snap_rotation_offset" </string>
+							<real> 0 </real>
+							<string> "snap_show_grid" </string>
+							<bool> False </bool>
+							<string> "snap_offset" </string>
+							<vector2> 0, 0 </vector2>
 							<string> "ofs" </string>
-							<vector2> -416, -88.2511 </vector2>
-							<string> "snap" </string>
-							<int> 10 </int>
+							<vector2> -416, -209.989 </vector2>
+							<string> "snap_rotation" </string>
+							<bool> False </bool>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -320,11 +318,10 @@
 					<string> "Script" </string>
 				</dictionary>
 				<node_path> ".." </node_path>
-				<resource  resource_type="Animation" path="local://0">  </resource>
+				<resource  resource_type="Animation" path="local://1">  </resource>
 				<array  len="0" shared="false">
 				</array>
 				<string> "" </string>
-				<bool> False </bool>
 				<real> -27 </real>
 				<real> -71 </real>
 				<real> 7 </real>
@@ -344,19 +341,15 @@
 				<real> 140 </real>
 				<real> 168 </real>
 				<vector2> 0, 0 </vector2>
-				<int> 1 </int>
-				<resource  resource_type="Shape2D" path="local://1">  </resource>
-				<matrix32> 1, -0, 0, 1, 0, 0 </matrix32>
-				<vector2> 0.291992, 0 </vector2>
-				<vector2> 0, 50 </vector2>
 				<resource name=""></resource>				<int> 4 </int>
 				<color> 1, 1, 1, 1 </color>
 				<rect2> 0, 0, 0, 0 </rect2>
 				<resource  resource_type="SampleLibrary" path="local://2">  </resource>
 				<nil>  </nil>
+				<resource  resource_type="Shape2D" path="local://3">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="568"> 				-1, -1, 1, 0, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 1, 11, 7, 12, 8, 0, 0, 0, 14, 13, -1, 9, 2, 0, 15, 6, 16, 4, 17, 9, 18, 10, 19, 1, 20, 2, 21, 11, 22, 12, 0, 0, 0, 24, 23, -1, 25, 2, 0, 3, 13, 4, 2, 5, 2, 25, 14, 26, 15, 27, 16, 28, 17, 29, 0, 30, 0, 31, 0, 32, 0, 33, 13, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 20, 40, 2, 41, 4, 42, 2, 43, 13, 44, 13, 45, 1, 0, 0, 0, 24, 46, -1, 25, 2, 0, 3, 13, 4, 2, 5, 2, 25, 21, 26, 15, 27, 22, 28, 17, 29, 0, 30, 0, 31, 0, 32, 0, 33, 13, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 20, 40, 2, 41, 4, 42, 2, 43, 13, 44, 13, 45, 1, 0, 0, 0, 24, 47, -1, 25, 2, 0, 3, 13, 4, 2, 5, 2, 25, 23, 26, 15, 27, 24, 28, 17, 29, 0, 30, 0, 31, 0, 32, 0, 33, 13, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 20, 40, 2, 41, 4, 42, 2, 43, 13, 44, 13, 45, 1, 0, 0, 0, 49, 48, -1, 30, 2, 0, 3, 1, 4, 2, 5, 2, 25, 25, 26, 26, 27, 27, 28, 28, 29, 0, 30, 0, 31, 0, 32, 0, 33, 1, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 2, 40, 2, 41, 2, 42, 4, 43, 13, 44, 13, 50, 12, 51, 18, 52, 6, 53, 13, 54, 13, 55, 29, 0, 0, 0, 49, 56, -1, 30, 2, 0, 3, 1, 4, 2, 5, 2, 25, 30, 26, 26, 27, 31, 28, 28, 29, 0, 30, 0, 31, 0, 32, 0, 33, 1, 34, 1, 35, 18, 36, 2, 37, 19, 38, 4, 39, 2, 40, 2, 41, 2, 42, 4, 43, 13, 44, 13, 50, 12, 51, 18, 52, 6, 53, 13, 54, 13, 55, 29, 0, 0, 0, 58, 57, -1, 29, 2, 0, 3, 1, 4, 2, 5, 2, 6, 32, 7, 4, 8, 5, 9, 6, 10, 1, 59, 33, 60, 34, 61, 35, 62, 13, 63, 33, 64, 6, 65, 2, 66, 2, 67, 4, 68, 2, 69, 13, 70, 6, 71, 6, 72, 1, 73, 13, 74, 1, 75, 32, 76, 4, 77, 29, 78, 29, 0, 7, 0, 80, 79, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 32, 7, 4, 8, 5, 9, 6, 10, 1, 81, 34, 82, 13, 0, 7, 0, 83, 83, -1, 12, 2, 0, 3, 1, 4, 2, 5, 2, 6, 36, 7, 4, 8, 5, 9, 6, 10, 1, 84, 1, 85, 37, 86, 33, 0, 0, 0, 88, 87, -1, 20, 2, 0, 3, 1, 4, 2, 5, 2, 6, 32, 7, 4, 8, 5, 9, 6, 10, 1, 89, 38, 90, 1, 91, 32, 92, 13, 93, 13, 94, 33, 95, 39, 96, 6, 97, 40, 98, 13, 99, 41, 0, 0, 0, 101, 100, -1, 15, 2, 0, 102, 33, 103, 42, 104, 4, 105, 2, 106, 4, 107, 4, 108, 4, 109, 43, 110, 43, 111, 43, 112, 43, 113, 18, 114, 4, 115, 4, 0 </int_array>
+			<int_array  len="504"> 				-1, -1, 1, 0, -1, 20, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 1, 12, 8, 13, 7, 14, 3, 15, 1, 16, 1, 17, 1, 18, 1, 19, 9, 20, 10, 21, 11, 0, 0, 0, 23, 22, -1, 9, 2, 0, 24, 7, 25, 5, 26, 12, 27, 13, 28, 1, 29, 2, 30, 14, 31, 15, 0, 0, 0, 33, 32, -1, 26, 2, 0, 3, 8, 4, 2, 5, 2, 6, 3, 34, 16, 35, 17, 36, 18, 37, 19, 38, 0, 39, 0, 40, 0, 41, 0, 42, 8, 43, 1, 44, 20, 45, 2, 46, 21, 47, 5, 48, 22, 49, 2, 50, 5, 51, 2, 52, 8, 53, 8, 54, 1, 0, 0, 0, 33, 55, -1, 26, 2, 0, 3, 8, 4, 2, 5, 2, 6, 3, 34, 23, 35, 17, 36, 24, 37, 19, 38, 0, 39, 0, 40, 0, 41, 0, 42, 8, 43, 1, 44, 20, 45, 2, 46, 21, 47, 5, 48, 22, 49, 2, 50, 5, 51, 2, 52, 8, 53, 8, 54, 1, 0, 0, 0, 33, 56, -1, 26, 2, 0, 3, 8, 4, 2, 5, 2, 6, 3, 34, 25, 35, 17, 36, 26, 37, 19, 38, 0, 39, 0, 40, 0, 41, 0, 42, 8, 43, 1, 44, 20, 45, 2, 46, 21, 47, 5, 48, 22, 49, 2, 50, 5, 51, 2, 52, 8, 53, 8, 54, 1, 0, 0, 0, 58, 57, -1, 31, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 34, 27, 35, 28, 36, 29, 37, 30, 38, 0, 39, 0, 40, 0, 41, 0, 42, 1, 43, 1, 44, 20, 45, 2, 46, 21, 47, 5, 48, 2, 49, 2, 50, 2, 51, 5, 52, 8, 53, 8, 59, 15, 60, 20, 61, 7, 62, 8, 63, 8, 64, 31, 0, 0, 0, 58, 65, -1, 31, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 34, 32, 35, 28, 36, 33, 37, 30, 38, 0, 39, 0, 40, 0, 41, 0, 42, 1, 43, 1, 44, 20, 45, 2, 46, 21, 47, 5, 48, 2, 49, 2, 50, 2, 51, 5, 52, 8, 53, 8, 59, 15, 60, 20, 61, 7, 62, 8, 63, 8, 64, 31, 0, 0, 0, 67, 66, -1, 21, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 34, 8, 5, 9, 6, 10, 7, 11, 1, 68, 35, 69, 1, 70, 34, 71, 8, 72, 8, 73, 3, 74, 36, 75, 7, 76, 37, 77, 8, 78, 38, 0, 0, 0, 80, 79, -1, 15, 2, 0, 81, 3, 82, 39, 83, 5, 84, 2, 85, 5, 86, 5, 87, 5, 88, 40, 89, 40, 90, 40, 91, 40, 92, 20, 93, 5, 94, 5, 0, 0, 0, 96, 95, -1, 12, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 34, 8, 5, 9, 6, 10, 7, 11, 1, 97, 41, 98, 8, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
