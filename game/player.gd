@@ -1,8 +1,8 @@
-var deer = preload("res://textures/deer.tex")
-var toad = preload("res://textures/toad.tex")
-var goat = preload("res://textures/goat.tex")
-var capybara = preload("res://textures/capybara.tex")
-var coin_scene = preload("res://game/coin.xml")
+var deer = load("res://textures/deer.tex")
+var toad = load("res://textures/toad.tex")
+var goat = load("res://textures/goat.tex")
+var capybara = load("res://textures/capybara.tex")
+var coin_scene = load("res://game/coin.xml")
 var jumping = false
 # Factor de salto
 var alt = 1.2
@@ -222,7 +222,7 @@ func _process(delta):
 	for i in range(coins.size()):
 		var elem = coins[i]
 		var elem_pos = elem.get_pos()
-		if (elem_pos.x <= diferencialPosX+10 and elem_pos.y <= pos.y+20 and elem_pos.y >= pos.y-15):
+		if (elem_pos.x <= diferencialPosX+10 and elem_pos.x > diferencialPosX -10 and elem_pos.y <= pos.y+20 and elem_pos.y >= pos.y-15):
 			get_node("sounds").play("coin")
 			elem.queue_free()
 			coins_acum += 1

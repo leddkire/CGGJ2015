@@ -1,7 +1,7 @@
 
 extends StaticBody2D
-var dirt = preload("res://textures/dirt.tex")
-var agua = preload("res://textures/waterMid.tex")
+var dirt = load("res://textures/dirt.tex")
+var agua = load("res://textures/waterMid.tex")
 var type = "agua"
 # member variables here, example:
 # var a=2
