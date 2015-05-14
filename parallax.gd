@@ -38,6 +38,7 @@ var numClouds
 var genClouds = false
 
 var viewWidth
+var offset = 4
 
 class Cloud:
 	var pos = Vector2()
@@ -115,7 +116,7 @@ func _genCloud():
 	numClouds = rand_range(0,5)
 	for i in range(numClouds):
 		var c = Cloud.new()
-		c.pos = Vector2(416 + 20*int(rand_range(0,4)),20*int(rand_range(1,6)))
+		c.pos = Vector2(viewWidth+ 60*int(rand_range(0,4)),20*int(rand_range(1,6)))
 		c.tex = cloudTexts[int(int(rand_range(0,100))%3)]
 		c.speed = cloudSpeed * rand_range(0.4,1)
 		cloud1List.append(c)
@@ -132,9 +133,9 @@ func _ready():
 	get_node("CloudGenTimer").connect("timeout",self,"_setGen")
 	# Initalization here
 	viewWidth = get_node("/root/global").viewWidth
-	var mount1Count = viewWidth/mount1Width
-	var mount2Count = viewWidth/mount2Width
-	var mount3Count = viewWidth/mount3Width
+	var mount1Count = (viewWidth/mount1Width) + 20
+	var mount2Count = (viewWidth/mount2Width) + offset
+	var mount3Count = (viewWidth/mount3Width) + offset
 	for i in range(mount1Count):
 		var m = Mountain.new()
 		m.pos = Vector2(i*mount1Width,altura)

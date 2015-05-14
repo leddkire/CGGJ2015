@@ -11,13 +11,12 @@ var gameOver = load("res://game/gameOver/gameOver.xml")
 
 func _process(delta):
 	if(not dead):
-		
 		var player = get_node("player")
-		var spritePosX = get_node("player/sprite").get_pos().x
+		var spritePosX = player.get_pos().x
 		if(spritePosX <= death_margin):
 			dead = true
 		var animal_actual = player.actual_animal
-		var terreno_actual = get_node("terrain").where_am_i(player.get_pos().x + spritePosX)
+		var terreno_actual = get_node("terrain").where_am_i(player.get_pos().x)
 		if (terreno_actual == "montana"):
 			if(animal_actual == 0):
 				player.stamina_factor = FACTOR_ALTO

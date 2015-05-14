@@ -12,12 +12,13 @@ var posOfCreation = 0
 var terrenoPorAgregar = scenePradera
 var velocidad
 var numTMax
-var alturaTerr = 120
+var alturaTerr
 
 #variables de prueba
 var draw_check = false
 var draw_lines = false
 var draw_check_x = 0
+var offset = 4
 
 func choose_terrain():
 	var random_terr = int(rand_range(0,2))
@@ -124,7 +125,7 @@ func _process(delta):
 		platforms[i].set_pos(pos)
 		
 	#Eliminar terreno fuera de pantalla y agregar otro
-	if(posicionPrimero.x <= -(anchoUnidadTerreno)):
+	if(posicionPrimero.x <= -(anchoUnidadTerreno)*3):
 		terrenos[0].remove_from_group("Terrenos")
 		terrenos[0].free()
 		var node
@@ -164,8 +165,9 @@ func _process(delta):
 func _ready():
 	var rootView = get_tree().get_root().get_rect()
 	var viewWidth = rootView.size.width
-	var numTerrainInit = int(viewWidth/64)
+	var numTerrainInit = int(viewWidth/64) + offset
 	var node
+	alturaTerr = get_node("/root/global").alturaTerr
 	velocidad = get_node("/root/global").screen_speed
 	while numTerrainInit > 0:
 		node = scenePradera.instance()

@@ -45,21 +45,26 @@ var playedCapySound = false
 var originalSpriteXPos
 var originalSpriteYPos
 #Velocidad en la que el animal se traslada a traves de la pantalla
-var travelSpeed = 0.5
+var travelSpeed = 30
 #Velocidad de recuperacion
-var recoverSpeed = 2
+var recoverSpeed = 80
 #Variable que guarda la diferencia entre la posicion actual y el traslado que se le hara
 var diferencialPosX
 #Variable que determina que tanto se puede adelantar el jugador cuando esta utilizando bien las mecanicas de terreno
-var maxDistance = 80
+var maxDistance = 120
+var mediumPos = 60
 
 #Variables de debugging
 #Variable que elimina stamina (para probar cosas)
 var godMode = false
 #Variable para decirle al programa que dibuje la posicion del jugador
 var drawPlayerPos = false
-
-
+ 
+#variables de movimiento para las fisicas
+var velocity = Vector2()
+var jumpForce = 100
+var gravity
+var recovering = false
 
 func _get_random():
 	#Se consigue un numero random entre 1 y 4. Si no cambia, revisar el seed.
@@ -88,30 +93,17 @@ func check(name):
 func _draw():
 	if(drawPlayerPos):
 		var sprite = get_node("sprite")
-		var pos = sprite.get_pos()
+		var pos = get_pos()
 		draw_rect(Rect2(pos.x,pos.y,5,100),Color(0,0,255))
 
-func _process(delta):
-	#update()
+func _fixed_process(delta):
 	var jump = Input.is_action_pressed("jump")
-	var animal_1 = Input.is_action_pressed("animal_1")
-	var animal_2 = Input.is_action_pressed("animal_2")
-	var animal_3 = Input.is_action_pressed("animal_3")
-	var sprite = get_node("sprite")
-	var pos = sprite.get_pos()
-	# Distancia recorrida
-	distance += STEP_DISTANCE
-	get_parent().get_node("UI/header/distance").set_text(str(int(distance)))
-	get_parent().get_node("UI/header/coins_label").set_text(str(int(coins_acum)))
-	#Si se recorre cierta distancia, se incrementa la velocidad
-	if(distance-last_distance >= DISTANCE_TO_GROW):
-		get_node("/root/global").screen_speed += 0.1
-		last_distance = distance
-		BASE_STAMINA_CONS += 0.1
-	var posXActual = get_node("sprite").get_pos().x
+	var motion = Vector2()
+	var posXActual = get_pos().x
+	#update()
+
 	diferencialPosX = posXActual
-	# Control de stamina
-	# Control de stamina
+	# Control de stamina y movimiento horizontal
 	for i in range(numAnimals):
 		if (actual_animal != i):
 			if (stamina[i] < 100):
@@ -123,42 +115,81 @@ func _process(delta):
 			if(stamina[i] > 0):
 				if(not godMode):
 					stamina[i] -= BASE_STAMINA_CONS * stamina_factor
-				#Si esta mas atras de la posicion original del sprite, se traslada hasta estar ahi
-				if(posXActual < originalSpriteXPos):
-					diferencialPosX += recoverSpeed
-					if(diferencialPosX > originalSpriteXPos):
-						diferencialPosX = originalSpriteXPos
-						
-				if(posXActual <= maxDistance and posXActual >= originalSpriteXPos):
-					diferencialPosX += travelSpeed*direction
-					if(diferencialPosX < originalSpriteXPos):
-						diferencialPosX = originalSpriteXPos
-					elif(diferencialPosX > maxDistance):
-						diferencialPosX = maxDistance
-
-				get_node("sprite").set_pos(Vector2(diferencialPosX,0))
+				if(recovering):
+					motion.x = recoverSpeed * delta
+				else: 
+					if(posXActual <= mediumPos && direction == -1):
+						motion.x = 0
+					
+					elif(posXActual > mediumPos && posXActual < maxDistance):
+						motion.x = travelSpeed*delta*direction
+					elif(posXActual>=maxDistance && direction == 1):
+						motion.x = 0
+					else:
+						motion.x = -travelSpeed*delta
 				
 			if (stamina[i] <= 0):
-				diferencialPosX -= travelSpeed
-				get_node("sprite").set_pos(Vector2(diferencialPosX,0))
+				motion.x = -travelSpeed*delta
+	
+###############################################
+#		FALTA MOVIMIENTO HORIZONTAL
+###############################################
 	if(actual_animal == capybaraId):
-		if(posXActual < originalSpriteXPos):
-			diferencialPosX += recoverSpeed
-			if(diferencialPosX > originalSpriteXPos):
-				diferencialPosX = originalSpriteXPos
-		if(posXActual <= maxDistance and posXActual >= originalSpriteXPos):
-			diferencialPosX += travelSpeed
-			if(diferencialPosX < originalSpriteXPos):
-				diferencialPosX = originalSpriteXPos
-			elif(diferencialPosX > maxDistance):
-				diferencialPosX = maxDistance
+		if(recovering):
+			motion.x = recoverSpeed*delta
+		else:
+			if(posXActual < maxDistance):
+				motion.x = travelSpeed*delta
+			else:
+				if(direction ==1):
+					motion.x = 0
 
-		get_node("sprite").set_pos(Vector2(diferencialPosX,0))
+	#Control de salto
 	
 	
+	if(jump and not jumping):
+		jumping = true
+		get_node("anim").stop()
+		get_node("sprite").set_frame(0)
+	if(not(is_colliding())):
+		velocity.y += gravity*delta
+	else:
+		velocity.y = 0
+		jumping = false
+		
+	if(jumping):
+		motion.y = -jumpForce*delta
+	else:
+		if(not (get_node("anim").is_playing())):
+			get_node("anim").play("running")
+
+	motion += delta * velocity 
+	move(motion)
+
+func _process(delta):
+	
+	
+	var animal_1 = Input.is_action_pressed("animal_1")
+	var animal_2 = Input.is_action_pressed("animal_2")
+	var animal_3 = Input.is_action_pressed("animal_3")
+	var sprite = get_node("sprite")
+	var pos = sprite.get_pos()
+	# Distancia recorrida
+	distance += STEP_DISTANCE
+	get_parent().get_node("UI/header/distance").set_text(str(int(distance)))
+	#Si se recorre cierta distancia, se incrementa la velocidad
+	if(distance-last_distance >= DISTANCE_TO_GROW):
+###############################################################################################
+		#PROBLEMA: El cambio de velocidad causa irregularidades en la traslacion de los sprites
+###############################################################################################
+		get_node("/root/global").screen_speed += 0.1
+		last_distance = distance
+		BASE_STAMINA_CONS += 0.1
+	
+	var posXActual = get_pos().x
 	var blockChange = get_parent().get_node("UI").blockChange
 	# Cambio de sprites
-	# Cambio de sprites
+	# Si se hacen mas sprites, OJO que el chiguire es el indice 3
 	if (not jumping and capybara_timeout <= 0 and not(blockChange)):
 		if (animal_1):
 			if (actual_animal != 0):
@@ -166,6 +197,7 @@ func _process(delta):
 				actual_animal = 0
 				get_parent().get_node("UI").blockChange = true
 				get_parent().get_node("UI/charCd").start()
+				
 		if (animal_2):
 			if (actual_animal != 1):
 				actual_animal = 1
@@ -178,58 +210,26 @@ func _process(delta):
 				sprite.set_texture(goat)
 				get_parent().get_node("UI/charCd").start()
 				get_parent().get_node("UI").blockChange = true
+	#actual_animal = 3 es el chiguire
+	if(actual_animal != capybaraId ):
+		if(stamina[actual_animal] > 0 && posXActual < mediumPos - 1):
+			recovering = true
+		else:
+			recovering = false
+	else:
+		if(posXActual < mediumPos -1):
+			recovering = true
+	
+	
 	get_parent().get_node("UI/stamina_bars/ciervo/stamina").set_value(stamina[0])
 	get_parent().get_node("UI/stamina_bars/sapo/stamina").set_value(stamina[1])
 	get_parent().get_node("UI/stamina_bars/goat/stamina").set_value(stamina[2])
 
 
 	# Salto
-	if (jump and not jumping):
-		jumping = true
-		get_node("anim").stop()
-		sprite.set_frame(0)
-	if(jumping):
-		alt -= 0.04
-		if (alt > -1.2):
-			if (pos.y > 0):
-				sprite.set_pos(Vector2(diferencialPosX, 0))
-				jumping = false
-				alt = 1.2
-				get_node("anim").play("running")
-			else:
-				pos += Vector2(0,-alt)
-				sprite.set_pos(Vector2(diferencialPosX,pos.y))
-		else:
-			jumping = false
-			alt = 1.2
-			get_node("anim").play("running")
-	
-	
-
-	# Generador de monedas
-	coin_timeout -= delta
-	if (coin_timeout <= 0):
-		var new_coin = coin_scene.instance()
-		new_coin.add_to_group("Coins")
-		var ran = _get_random()
-		if (ran < 6):
-			new_coin.set_pos(Vector2(screenW, 10))
-		else:
-			new_coin.set_pos(Vector2(screenW, -16))
-		add_child(new_coin)
-		coin_timeout = 1.5
-
-	# Colisiones con monedas
-	var coins = get_tree().get_nodes_in_group("Coins")
-	for i in range(coins.size()):
-		var elem = coins[i]
-		var elem_pos = elem.get_pos()
-		if (elem_pos.x <= diferencialPosX+10 and elem_pos.x > diferencialPosX -10 and elem_pos.y <= pos.y+20 and elem_pos.y >= pos.y-15):
-			get_node("sounds").play("coin")
-			elem.queue_free()
-			coins_acum += 1
-
-	if (coins_acum % 20 == 0 and coins_acum != 0):
+	#Manejo de gravedad
+	coins_acum = get_node("/root/global").coin_count
+	if (coins_acum % 20 == 0 and coins_acum !=  0):
 		if(not playedCapySound):
 			get_node("sounds").play("capypowers")
 			playedCapySound = true
@@ -237,7 +237,7 @@ func _process(delta):
 		sprite.set_texture(capybara)
 		actual_animal = capybaraId
 		capybara_timeout = 8
-		
+	
 	if (capybara_timeout > 0):
 		capybara_timeout -= delta
 		if (capybara_timeout <= 0):
@@ -261,11 +261,14 @@ func _exit_tree():
 func _ready():
 	# Initalization here
 	get_node("sprite").set_texture(deer)
+	originalSpriteXPos = get_pos().x
+	gravity = get_node("/root/global").gravity
 	get_node("anim").play("running")
-	originalSpriteXPos = get_node("sprite").get_pos().x
+	get_node("/root/global").player_id = get_instance_ID()
 	diferencialPosX = 0
 	actual_animal = 0
 	max_stamina = 0
 	distance = 0
+	set_fixed_process(true)
 	set_process(true)
 	pass
