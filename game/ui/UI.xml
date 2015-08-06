@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource_file type="PackedScene" subresource_count="10" version="1.1" version_name="Godot Engine v1.1.stable.custom_build">
+	<ext_resource path="res://game/ui/UI.gd" type="Script"></ext_resource>
+	<ext_resource path="res://textures/header.tex" type="Texture"></ext_resource>
+	<ext_resource path="res://textures/coins.tex" type="Texture"></ext_resource>
+	<ext_resource path="res://game/font/volter.fnt" type="Font"></ext_resource>
+	<ext_resource path="res://images/iconDeer.png" type="Texture"></ext_resource>
+	<ext_resource path="res://images/iconToad.png" type="Texture"></ext_resource>
+	<ext_resource path="res://images/iconGoat.png" type="Texture"></ext_resource>
+	<ext_resource path="res://game/ui/staminaBarDraw.gd" type="Script"></ext_resource>
+	<resource type="GDScript" path="local://2">
+		<string name="script/source"> "&#000a;extends Label&#000a;&#000a;# member variables here, example:&#000a;# var a=2&#000a;# var b=&quot;textvar&quot;&#000a;func _process(delta):&#000a;&#0009;set_text(str(get_node(&quot;/root/global&quot;).coin_count))&#000a;&#000a;func _ready():&#000a;&#0009;set_process(true)&#000a;&#000a;&#000a;" </string>
+
+	</resource>
+	<main_resource>
+		<dictionary name="_bundled" shared="false">
+			<string> "conn_count" </string>
+			<int> 0 </int>
+			<string> "conns" </string>
+			<int_array  len="0"> 				 </int_array>
+			<string> "names" </string>
+			<string_array  len="37">
+				<string> "UI" </string>
+				<string> "Node2D" </string>
+				<string> "transform/pos" </string>
+				<string> "script/script" </string>
+				<string> "__meta__" </string>
+				<string> "header" </string>
+				<string> "Sprite" </string>
+				<string> "texture" </string>
+				<string> "coins_icon" </string>
+				<string> "distance" </string>
+				<string> "Label" </string>
+				<string> "margin/left" </string>
+				<string> "margin/top" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
+				<string> "focus/ignore_mouse" </string>
+				<string> "focus/stop_mouse" </string>
+				<string> "size_flags/horizontal" </string>
+				<string> "custom_fonts/font" </string>
+				<string> "range/min" </string>
+				<string> "range/max" </string>
+				<string> "range/step" </string>
+				<string> "range/page" </string>
+				<string> "range/value" </string>
+				<string> "range/exp_edit" </string>
+				<string> "rounded_values" </string>
+				<string> "percent_visible" </string>
+				<string> "coins_label" </string>
+				<string> "stamina_bars" </string>
+				<string> "ciervo" </string>
+				<string> "transform/scale" </string>
+				<string> "stamina" </string>
+				<string> "ProgressBar" </string>
+				<string> "percent/visible" </string>
+				<string> "sapo" </string>
+				<string> "goat" </string>
+				<string> "current_staminaBar" </string>
+			</string_array>
+			<string> "node_count" </string>
+			<int> 13 </int>
+			<string> "nodes" </string>
+			<int_array  len="293"> 				-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 0, 0, 6, 5, -1, 3, 2, 3, 7, 4, 4, 5, 0, 1, 0, 6, 8, -1, 2, 2, 6, 7, 7, 0, 1, 0, 10, 9, -1, 16, 11, 8, 12, 9, 13, 10, 14, 11, 15, 12, 16, 12, 17, 13, 18, 14, 19, 15, 20, 16, 21, 16, 22, 16, 23, 15, 24, 17, 25, 17, 26, 10, 0, 1, 0, 10, 27, -1, 17, 11, 18, 12, 9, 13, 19, 14, 11, 15, 12, 16, 12, 17, 13, 18, 14, 19, 15, 20, 16, 21, 16, 22, 16, 23, 15, 24, 17, 25, 17, 26, 10, 3, 20, 0, 0, 0, 1, 28, -1, 1, 4, 21, 0, 5, 0, 6, 29, -1, 3, 2, 22, 30, 23, 7, 24, 0, 6, 0, 32, 31, -1, 16, 11, 25, 12, 26, 13, 27, 14, 28, 15, 17, 16, 12, 17, 13, 18, 14, 19, 15, 20, 29, 21, 16, 22, 15, 23, 29, 24, 17, 25, 17, 33, 12, 0, 5, 0, 6, 34, -1, 3, 2, 30, 30, 23, 7, 31, 0, 8, 0, 32, 31, -1, 16, 11, 25, 12, 26, 13, 27, 14, 28, 15, 17, 16, 12, 17, 13, 18, 14, 19, 15, 20, 29, 21, 16, 22, 15, 23, 29, 24, 17, 25, 17, 33, 12, 0, 5, 0, 6, 35, -1, 3, 2, 32, 30, 23, 7, 33, 0, 10, 0, 32, 31, -1, 16, 11, 25, 12, 26, 13, 27, 14, 28, 15, 17, 16, 12, 17, 13, 18, 14, 19, 15, 20, 29, 21, 16, 22, 15, 23, 29, 24, 17, 25, 17, 33, 12, 0, 0, 0, 1, 36, -1, 2, 2, 34, 3, 35, 0 </int_array>
+			<string> "variants" </string>
+			<array  len="36" shared="false">
+				<vector2> 0, 10 </vector2>
+				<resource  resource_type="Script" path="res://game/ui/UI.gd">  </resource>
+				<dictionary  shared="false">
+					<string> "__editor_plugin_screen__" </string>
+					<string> "2D" </string>
+					<string> "__editor_plugin_states__" </string>
+					<dictionary  shared="false">
+						<string> "2D" </string>
+						<dictionary  shared="false">
+							<string> "ofs" </string>
+							<vector2> -159.776, -70.2288 </vector2>
+							<string> "snap_grid" </string>
+							<bool> False </bool>
+							<string> "snap_offset" </string>
+							<vector2> 0, 0 </vector2>
+							<string> "snap_pixel" </string>
+							<bool> False </bool>
+							<string> "snap_relative" </string>
+							<bool> False </bool>
+							<string> "snap_rotation" </string>
+							<bool> False </bool>
+							<string> "snap_rotation_offset" </string>
+							<real> 0 </real>
+							<string> "snap_rotation_step" </string>
+							<real> 0.261799 </real>
+							<string> "snap_show_grid" </string>
+							<bool> False </bool>
+							<string> "snap_step" </string>
+							<vector2> 10, 10 </vector2>
+							<string> "zoom" </string>
+							<real> 1.50734 </real>
+						</dictionary>
+						<string> "3D" </string>
+						<dictionary  shared="false">
+							<string> "ambient_light_color" </string>
+							<color> 0.15, 0.15, 0.15, 1 </color>
+							<string> "default_light" </string>
+							<bool> True </bool>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "show_grid" </string>
+							<bool> True </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
+							<string> "viewports" </string>
+							<array  len="4" shared="false">
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "listener" </string>
+									<bool> True </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+								</dictionary>
+							</array>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "znear" </string>
+							<real> 0.1 </real>
+						</dictionary>
+					</dictionary>
+					<string> "__editor_run_settings__" </string>
+					<dictionary  shared="false">
+						<string> "custom_args" </string>
+						<string> "-l $scene" </string>
+						<string> "run_mode" </string>
+						<int> 0 </int>
+					</dictionary>
+				</dictionary>
+				<vector2> 370, 20 </vector2>
+				<resource  resource_type="Texture" path="res://textures/header.tex">  </resource>
+				<dictionary  shared="false">
+					<string> "_editor_collapsed" </string>
+					<bool> True </bool>
+				</dictionary>
+				<vector2> 9.35799, -0.609016 </vector2>
+				<resource  resource_type="Texture" path="res://textures/coins.tex">  </resource>
+				<real> -33 </real>
+				<real> -7 </real>
+				<real> -1 </real>
+				<real> 6 </real>
+				<bool> True </bool>
+				<int> 2 </int>
+				<resource  resource_type="Font" path="res://game/font/volter.fnt">  </resource>
+				<real> 0 </real>
+				<real> 1 </real>
+				<bool> False </bool>
+				<real> 18 </real>
+				<real> 37 </real>
+				<resource  resource_type="Script" path="local://2">  </resource>
+				<dictionary  shared="false">
+					<string> "_editor_collapsed" </string>
+					<bool> True </bool>
+				</dictionary>
+				<vector2> 40, 20 </vector2>
+				<vector2> 1.5, 1.5 </vector2>
+				<resource  resource_type="Texture" path="res://images/iconDeer.png">  </resource>
+				<real> 15 </real>
+				<real> -5 </real>
+				<real> 50 </real>
+				<real> 11 </real>
+				<real> 100 </real>
+				<vector2> 140, 20 </vector2>
+				<resource  resource_type="Texture" path="res://images/iconToad.png">  </resource>
+				<vector2> 240, 20 </vector2>
+				<resource  resource_type="Texture" path="res://images/iconGoat.png">  </resource>
+				<vector2> 0, -50 </vector2>
+				<resource  resource_type="Script" path="res://game/ui/staminaBarDraw.gd">  </resource>
+			</array>
+			<string> "version" </string>
+			<int> 1 </int>
+		</dictionary>
+
+	</main_resource>
+</resource_file>

@@ -10,6 +10,9 @@ var coin_timeout = 1.5
 var alturaTerr = 270
 var player_id
 var coin_count = 0
+var stamina = [100, 100, 100]
+var actual_animal = 0
+var blockChange = false
 
 #The root node of the Main Scene
 var root
@@ -17,6 +20,23 @@ var root
 var main_scene
 
 var viewWidth
+
+func load_hud(path):
+	var _scene = ResourceLoader.load(path)
+	var scene = _scene.instance()
+	scene.add_to_group("HUD")
+	return scene
+
+#Loads the intro scene
+#path: String containing the intro scene
+func load_intro(path):
+	get_tree().get_nodes_in_group("HUD")[0].hide()
+	change_scene(path)
+
+
+func load_level(path):
+	get_tree().get_nodes_in_group("HUD")[0].show()
+	change_scene(path)
 
 func change_scene(scene_path):
 	if(current_scene!=null):
@@ -28,6 +48,8 @@ func change_scene(scene_path):
 
 func restart():
 	change_scene(game)
+	
+	
 	
 func _ready():
 	#screen_speed = original_screen_speed

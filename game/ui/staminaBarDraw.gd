@@ -13,10 +13,10 @@ var actA
 var staminaBarImg = preload("res://game/ui/life.png");
 
 func _draw():
-	actA = get_parent().get_parent().get_node("player").actual_animal
+	actA = get_node("/root/global").actual_animal
 	var staminaLeft = 0
 	if(actA < 3):
-		staminaLeft = get_parent().get_parent().get_node("player").stamina[actA]
+		staminaLeft = get_node("/root/global").stamina[actA]
 	var h = staminaLeft/2
 	for i in range(h):
 		draw_texture(staminaBarImg,Vector2(20,100+(i*2)))

@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="20" version="1.1" version_name="Godot Engine v1.1.stable.d3b42e41b0">
+<resource_file type="PackedScene" subresource_count="11" version="1.1" version_name="Godot Engine v1.1.stable.custom_build">
 	<ext_resource path="res://game/mainScene/main.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/parallaxMountains/parallax.gd" type="Script"></ext_resource>
 	<ext_resource path="res://images/GAMEOVER.png" type="Texture"></ext_resource>
 	<ext_resource path="res://game/platform/platform.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/terrain_gen/terrain_gen.gd" type="Script"></ext_resource>
-	<ext_resource path="res://game/ui/UI.gd" type="Script"></ext_resource>
-	<ext_resource path="res://textures/header.tex" type="Texture"></ext_resource>
-	<ext_resource path="res://textures/coins.tex" type="Texture"></ext_resource>
-	<ext_resource path="res://game/font/volter.fnt" type="Font"></ext_resource>
-	<ext_resource path="res://images/iconDeer.png" type="Texture"></ext_resource>
-	<ext_resource path="res://images/iconToad.png" type="Texture"></ext_resource>
-	<ext_resource path="res://images/iconGoat.png" type="Texture"></ext_resource>
-	<ext_resource path="res://game/ui/charBlock.gd" type="Script"></ext_resource>
-	<ext_resource path="res://game/ui/staminaBarDraw.gd" type="Script"></ext_resource>
 	<ext_resource path="res://game/coin/coin_generator.scn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://game/player/player.scn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://game/mainTheme/mainTheme.xml" type="PackedScene"></ext_resource>
+	<ext_resource path="res://music/Lets Take It To Its Home.ogg" type="AudioStream"></ext_resource>
 	<resource type="RectangleShape2D" path="local://1">
 		<real name="custom_solver_bias"> 0 </real>
 		<vector2 name="extents"> 29, 10 </vector2>
-
-	</resource>
-	<resource type="GDScript" path="local://2">
-		<string name="script/source"> "&#000a;extends Label&#000a;&#000a;# member variables here, example:&#000a;# var a=2&#000a;# var b=&quot;textvar&quot;&#000a;func _process(delta):&#000a;&#0009;set_text(str(get_node(&quot;/root/global&quot;).coin_count))&#000a;&#000a;func _ready():&#000a;&#0009;set_process(true)&#000a;&#000a;&#000a;" </string>
 
 	</resource>
 	<main_resource>
@@ -33,19 +21,9 @@
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 			<string> "names" </string>
-			<string_array  len="96">
+			<string_array  len="38">
 				<string> "MainScene" </string>
 				<string> "Node2D" </string>
-				<string> "_import_path" </string>
-				<string> "visibility/visible" </string>
-				<string> "visibility/opacity" </string>
-				<string> "visibility/self_opacity" </string>
-				<string> "visibility/light_mask" </string>
-				<string> "transform/pos" </string>
-				<string> "transform/rot" </string>
-				<string> "transform/scale" </string>
-				<string> "z/z" </string>
-				<string> "z/relative" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
 				<string> "Parallax" </string>
@@ -56,21 +34,13 @@
 				<string> "one_shot" </string>
 				<string> "autostart" </string>
 				<string> "Sprite" </string>
+				<string> "visibility/visible" </string>
+				<string> "transform/pos" </string>
 				<string> "texture" </string>
-				<string> "centered" </string>
-				<string> "offset" </string>
-				<string> "flip_h" </string>
-				<string> "flip_v" </string>
-				<string> "vframes" </string>
-				<string> "hframes" </string>
-				<string> "frame" </string>
-				<string> "modulate" </string>
-				<string> "region" </string>
-				<string> "region_rect" </string>
 				<string> "Platform" </string>
 				<string> "StaticBody2D" </string>
+				<string> "transform/scale" </string>
 				<string> "input/pickable" </string>
-				<string> "shape_count" </string>
 				<string> "shapes/0/shape" </string>
 				<string> "shapes/0/transform" </string>
 				<string> "shapes/0/trigger" </string>
@@ -84,71 +54,23 @@
 				<string> "shape" </string>
 				<string> "trigger" </string>
 				<string> "terrain" </string>
-				<string> "UI" </string>
-				<string> "header" </string>
-				<string> "coins_icon" </string>
-				<string> "distance" </string>
-				<string> "Label" </string>
-				<string> "margin/left" </string>
-				<string> "margin/top" </string>
-				<string> "margin/right" </string>
-				<string> "margin/bottom" </string>
-				<string> "focus_neighbour/left" </string>
-				<string> "focus_neighbour/top" </string>
-				<string> "focus_neighbour/right" </string>
-				<string> "focus_neighbour/bottom" </string>
-				<string> "focus/ignore_mouse" </string>
-				<string> "focus/stop_mouse" </string>
-				<string> "size_flags/horizontal" </string>
-				<string> "size_flags/stretch_ratio" </string>
-				<string> "custom_fonts/font" </string>
-				<string> "range/min" </string>
-				<string> "range/max" </string>
-				<string> "range/step" </string>
-				<string> "range/page" </string>
-				<string> "range/value" </string>
-				<string> "range/exp_edit" </string>
-				<string> "rounded_values" </string>
-				<string> "text" </string>
-				<string> "align" </string>
-				<string> "valign" </string>
-				<string> "autowrap" </string>
-				<string> "uppercase" </string>
-				<string> "percent_visible" </string>
-				<string> "coins_label" </string>
-				<string> "stamina_bars" </string>
-				<string> "ciervo" </string>
-				<string> "stamina" </string>
-				<string> "ProgressBar" </string>
-				<string> "percent/visible" </string>
-				<string> "sapo" </string>
-				<string> "goat" </string>
-				<string> "charCd" </string>
-				<string> "charBlockBar" </string>
-				<string> "current_staminaBar" </string>
 				<string> "coin_generator" </string>
+				<string> "_import_path" </string>
 				<string> "player" </string>
 				<string> "KinematicBody2D" </string>
 				<string> "StreamPlayer" </string>
+				<string> "stream/stream" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 26 </int>
+			<int> 11 </int>
 			<string> "nodes" </string>
-			<int_array  len="1022"> 				-1, -1, 1, 0, -1, 12, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 1, 12, 8, 13, 9, 0, 0, 0, 1, 14, -1, 12, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 1, 12, 10, 13, 11, 0, 1, 0, 16, 15, -1, 5, 2, 0, 17, 3, 18, 12, 19, 13, 20, 1, 0, 0, 0, 21, 21, -1, 21, 2, 0, 3, 13, 4, 2, 5, 2, 6, 3, 7, 14, 8, 5, 9, 6, 10, 7, 11, 1, 22, 15, 23, 1, 24, 4, 25, 13, 26, 13, 27, 3, 28, 3, 29, 7, 30, 16, 31, 13, 32, 17, 0, 0, 0, 34, 33, -1, 23, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 18, 8, 5, 9, 19, 10, 7, 11, 1, 35, 13, 36, 3, 37, 20, 38, 21, 39, 13, 40, 3, 41, 3, 42, 4, 43, 5, 44, 2, 45, 5, 12, 22, 13, 23, 0, 4, 0, 46, 46, -1, 12, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 1, 47, 20, 48, 13, 0, 4, 0, 21, 21, -1, 21, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 1, 22, 24, 23, 1, 24, 4, 25, 13, 26, 13, 27, 3, 28, 3, 29, 7, 30, 16, 31, 13, 32, 17, 0, 0, 0, 1, 49, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 1, 12, 25, 0, 0, 0, 1, 50, -1, 12, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 26, 8, 5, 9, 6, 10, 7, 11, 1, 12, 27, 13, 28, 0, 8, 0, 21, 51, -1, 22, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 29, 8, 5, 9, 6, 10, 7, 11, 1, 22, 30, 23, 1, 24, 4, 25, 13, 26, 13, 27, 3, 28, 3, 29, 7, 30, 16, 31, 13, 32, 17, 13, 31, 0, 9, 0, 21, 52, -1, 21, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 32, 8, 5, 9, 6, 10, 7, 11, 1, 22, 33, 23, 1, 24, 4, 25, 13, 26, 13, 27, 3, 28, 3, 29, 7, 30, 16, 31, 13, 32, 17, 0, 9, 0, 54, 53, -1, 31, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 55, 34, 56, 35, 57, 36, 58, 37, 59, 0, 60, 0, 61, 0, 62, 0, 63, 1, 64, 1, 65, 38, 66, 2, 67, 39, 68, 5, 69, 2, 70, 2, 71, 2, 72, 5, 73, 13, 74, 13, 75, 40, 76, 7, 77, 7, 78, 13, 79, 13, 80, 36, 0, 9, 0, 54, 81, -1, 32, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 55, 41, 56, 35, 57, 42, 58, 37, 59, 0, 60, 0, 61, 0, 62, 0, 63, 1, 64, 1, 65, 38, 66, 2, 67, 39, 68, 5, 69, 2, 70, 2, 71, 2, 72, 5, 73, 13, 74, 13, 75, 40, 76, 7, 77, 7, 78, 13, 79, 13, 80, 36, 12, 43, 0, 8, 0, 1, 82, -1, 10, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 1, 0, 13, 0, 21, 83, -1, 21, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 44, 8, 5, 9, 45, 10, 7, 11, 1, 22, 46, 23, 1, 24, 4, 25, 13, 26, 13, 27, 3, 28, 3, 29, 7, 30, 16, 31, 13, 32, 17, 0, 14, 0, 85, 84, -1, 26, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 55, 47, 56, 48, 57, 49, 58, 50, 59, 0, 60, 0, 61, 0, 62, 0, 63, 13, 64, 1, 65, 38, 66, 2, 67, 39, 68, 5, 69, 51, 70, 2, 71, 5, 72, 51, 73, 13, 74, 13, 86, 1, 0, 13, 0, 21, 87, -1, 21, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 52, 8, 5, 9, 45, 10, 7, 11, 1, 22, 53, 23, 1, 24, 4, 25, 13, 26, 13, 27, 3, 28, 3, 29, 7, 30, 16, 31, 13, 32, 17, 0, 16, 0, 85, 84, -1, 26, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 55, 47, 56, 48, 57, 49, 58, 50, 59, 0, 60, 0, 61, 0, 62, 0, 63, 13, 64, 1, 65, 38, 66, 2, 67, 39, 68, 5, 69, 51, 70, 2, 71, 5, 72, 51, 73, 13, 74, 13, 86, 1, 0, 13, 0, 21, 88, -1, 21, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 54, 8, 5, 9, 45, 10, 7, 11, 1, 22, 55, 23, 1, 24, 4, 25, 13, 26, 13, 27, 3, 28, 3, 29, 7, 30, 16, 31, 13, 32, 17, 0, 18, 0, 85, 84, -1, 26, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 55, 47, 56, 48, 57, 49, 58, 50, 59, 0, 60, 0, 61, 0, 62, 0, 63, 13, 64, 1, 65, 38, 66, 2, 67, 39, 68, 5, 69, 51, 70, 2, 71, 5, 72, 51, 73, 13, 74, 13, 86, 1, 0, 8, 0, 16, 89, -1, 5, 2, 0, 17, 3, 18, 56, 19, 13, 20, 13, 0, 8, 0, 1, 90, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 57, 8, 5, 9, 6, 10, 7, 11, 1, 12, 58, 0, 8, 0, 1, 91, -1, 11, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 57, 8, 5, 9, 6, 10, 7, 11, 1, 12, 59, 0, 0, 0, 1, 92, 60, 2, 2, 0, 13, 61, 0, 0, 0, 94, 93, 62, 3, 2, 0, 7, 63, 13, 64, 0, 0, 0, 95, 95, 65, 2, 2, 0, 13, 66, 0 </int_array>
+			<int_array  len="149"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 1, 4, -1, 2, 2, 2, 3, 3, 0, 1, 0, 6, 5, -1, 4, 7, 4, 8, 5, 9, 6, 10, 7, 0, 0, 0, 11, 11, -1, 3, 12, 6, 13, 8, 14, 9, 0, 0, 0, 16, 15, -1, 14, 13, 10, 17, 11, 18, 6, 19, 12, 20, 13, 21, 6, 22, 4, 23, 4, 24, 14, 25, 15, 26, 16, 27, 15, 2, 17, 3, 18, 0, 4, 0, 28, 28, -1, 2, 29, 12, 30, 6, 0, 4, 0, 11, 11, -1, 0, 0, 0, 0, 1, 31, -1, 1, 2, 19, 0, 0, 0, 1, 32, 20, 2, 33, 21, 3, 22, 0, 0, 0, 35, 34, 23, 3, 33, 21, 13, 24, 3, 25, 0, 0, 0, 36, 36, 26, 3, 33, 21, 37, 27, 3, 28, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="67" shared="false">
-				<node_path> "" </node_path>
-				<bool> True </bool>
-				<real> 1 </real>
-				<int> 1 </int>
-				<vector2> 0, 0 </vector2>
-				<real> 0 </real>
-				<vector2> 1, 1 </vector2>
-				<int> 0 </int>
+			<array  len="29" shared="false">
 				<resource  resource_type="Script" path="res://game/mainScene/main.gd">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "2D" </string>
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "2D" </string>
@@ -268,25 +190,6 @@
 							<string> "znear" </string>
 							<real> 0.1 </real>
 						</dictionary>
-						<string> "Script" </string>
-						<dictionary  shared="false">
-							<string> "current" </string>
-							<int> 3 </int>
-							<string> "sources" </string>
-							<array  len="11" shared="false">
-								<string> "res://parallax.gd" </string>
-								<string> "res://game/global.gd" </string>
-								<string> "res://game/ui/UI.gd" </string>
-								<string> "res://game/mainScene/main.gd" </string>
-								<string> "res://game/ui/staminaBarDraw.gd" </string>
-								<string> "res://game/player/player.gd" </string>
-								<string> "res://game/mainScene/terrainCollision.gd" </string>
-								<string> "res://game/coin/coin_generator.gd" </string>
-								<string> "res://game/terrain_gen/terrain_gen.gd" </string>
-								<node_path> "/root/EditorNode/@Panel4/@VBoxContainer7/@HSplitContainer9/@VSplitContainer10/@VSplitContainer11/@VBoxContainer12/@Panel17/@Control19/@CanvasItemEditor5885/@VSplitContainer5810/@HSplitContainer5811/@Control5812/@Control5813/@Viewport5814/MainScene/UI/header/coins_label" </node_path>
-								<string> "res://game/parallaxMountains/parallax.gd" </string>
-							</array>
-						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
 					<dictionary  shared="false">
@@ -301,63 +204,27 @@
 					<string> "_editor_collapsed" </string>
 					<bool> True </bool>
 				</dictionary>
+				<int> 1 </int>
 				<real> 2 </real>
 				<bool> False </bool>
+				<bool> True </bool>
 				<vector2> 106.5, 60 </vector2>
 				<resource  resource_type="Texture" path="res://images/GAMEOVER.png">  </resource>
-				<color> 1, 1, 1, 1 </color>
-				<rect2> 0, 0, 0, 0 </rect2>
 				<vector2> 447.64, 137.631 </vector2>
 				<vector2> 1, 0.252617 </vector2>
 				<resource  resource_type="Shape2D" path="local://1">  </resource>
 				<matrix32> 1, -0, 0, 1, 0, 0 </matrix32>
+				<vector2> 0, 0 </vector2>
+				<real> 0 </real>
+				<real> 1 </real>
 				<resource  resource_type="Script" path="res://game/platform/platform.gd">  </resource>
 				<dictionary  shared="false">
 					<string> "_editor_collapsed" </string>
 					<bool> True </bool>
 				</dictionary>
-				<resource name=""></resource>				<resource  resource_type="Script" path="res://game/terrain_gen/terrain_gen.gd">  </resource>
-				<vector2> 0, 10 </vector2>
-				<resource  resource_type="Script" path="res://game/ui/UI.gd">  </resource>
-				<dictionary  shared="false">
-					<string> "_editor_collapsed" </string>
-					<bool> True </bool>
-				</dictionary>
-				<vector2> 370, 20 </vector2>
-				<resource  resource_type="Texture" path="res://textures/header.tex">  </resource>
-				<dictionary  shared="false">
-					<string> "_editor_collapsed" </string>
-					<bool> True </bool>
-				</dictionary>
-				<vector2> 9.35799, -0.609016 </vector2>
-				<resource  resource_type="Texture" path="res://textures/coins.tex">  </resource>
-				<real> -33 </real>
-				<real> -7 </real>
-				<real> -1 </real>
-				<real> 6 </real>
-				<int> 2 </int>
-				<resource  resource_type="Font" path="res://game/font/volter.fnt">  </resource>
-				<string> "" </string>
-				<real> 18 </real>
-				<real> 37 </real>
-				<resource  resource_type="Script" path="local://2">  </resource>
-				<vector2> 40, 20 </vector2>
-				<vector2> 1.5, 1.5 </vector2>
-				<resource  resource_type="Texture" path="res://images/iconDeer.png">  </resource>
-				<real> 15 </real>
-				<real> -5 </real>
-				<real> 50 </real>
-				<real> 11 </real>
-				<real> 100 </real>
-				<vector2> 140, 20 </vector2>
-				<resource  resource_type="Texture" path="res://images/iconToad.png">  </resource>
-				<vector2> 240, 20 </vector2>
-				<resource  resource_type="Texture" path="res://images/iconGoat.png">  </resource>
-				<real> 3 </real>
-				<vector2> 0, -50 </vector2>
-				<resource  resource_type="Script" path="res://game/ui/charBlock.gd">  </resource>
-				<resource  resource_type="Script" path="res://game/ui/staminaBarDraw.gd">  </resource>
+				<resource  resource_type="Script" path="res://game/terrain_gen/terrain_gen.gd">  </resource>
 				<resource  resource_type="PackedScene" path="res://game/coin/coin_generator.scn">  </resource>
+				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
@@ -645,6 +512,7 @@
 					</dictionary>
 				</dictionary>
 				<resource  resource_type="PackedScene" path="res://game/mainTheme/mainTheme.xml">  </resource>
+				<resource  resource_type="AudioStream" path="res://music/Lets Take It To Its Home.ogg">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
@@ -775,6 +643,8 @@
 						<string> "run_mode" </string>
 						<int> 0 </int>
 					</dictionary>
+					<string> "__editor_show_subtree" </string>
+					<bool> True </bool>
 				</dictionary>
 			</array>
 			<string> "version" </string>

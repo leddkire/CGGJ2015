@@ -8,8 +8,7 @@ var coin_scene = load("res://game/coin/coin.xml")
 var jumping = false
 # Factor de salto
 var alt = 1.2
-var stamina = [100, 100, 100]
-var actual_animal = 0
+
 var max_stamina = 0 #Que animal tiene más stamina
 var distance = 0
 var coin_timeout = 1.5
@@ -24,7 +23,8 @@ var current_state
 var prev_state
 var output_state
 var state_old
-
+var stamina
+var actual_animal
 var STEP_DISTANCE = 0.1
 var AMOUNT_RECOVERY = 0.1
 var BASE_STAMINA_CONS = 0.2
@@ -100,6 +100,7 @@ func _fixed_process(delta):
 	var jump = Input.is_action_pressed("jump")
 	var motion = Vector2()
 	var posXActual = get_pos().x
+	var actal_animal = get_node("/root/global").actual_animal
 	#update()
 
 	diferencialPosX = posXActual
@@ -174,9 +175,11 @@ func _process(delta):
 	var animal_3 = Input.is_action_pressed("animal_3")
 	var sprite = get_node("sprite")
 	var pos = sprite.get_pos()
+	actual_animal = get_node("/root/global").actual_animal
+	stamina = get_node("/root/global").stamina
 	# Distancia recorrida
 	distance += STEP_DISTANCE
-	get_parent().get_node("UI/header/distance").set_text(str(int(distance)))
+	get_node("/root/global").distance_travelled = distance
 	#Si se recorre cierta distancia, se incrementa la velocidad
 	if(distance-last_distance >= DISTANCE_TO_GROW):
 ###############################################################################################
@@ -187,7 +190,7 @@ func _process(delta):
 		BASE_STAMINA_CONS += 0.1
 	
 	var posXActual = get_pos().x
-	var blockChange = get_parent().get_node("UI").blockChange
+	var blockChange = get_node("/root/global").blockChange
 	# Cambio de sprites
 	# Si se hacen mas sprites, OJO que el chiguire es el indice 3
 	if (not jumping and capybara_timeout <= 0 and not(blockChange)):
@@ -195,21 +198,23 @@ func _process(delta):
 			if (actual_animal != 0):
 				sprite.set_texture(deer)
 				actual_animal = 0
-				get_parent().get_node("UI").blockChange = true
-				get_parent().get_node("UI/charCd").start()
+				get_node("/root/global").blockChange = true
+				get_node("charCd").start()
 				
 		if (animal_2):
 			if (actual_animal != 1):
 				actual_animal = 1
 				sprite.set_texture(toad)
-				get_parent().get_node("UI/charCd").start()
-				get_parent().get_node("UI").blockChange = true
+				get_node("/root/global").blockChange = true
+				get_node("charCd").start()
 		if (animal_3):
 			if (actual_animal != 2):
 				actual_animal = 2
 				sprite.set_texture(goat)
-				get_parent().get_node("UI/charCd").start()
-				get_parent().get_node("UI").blockChange = true
+				get_node("/root/global").blockChange = true
+				get_node("charCd").start()
+		
+		
 	#actual_animal = 3 es el chiguire
 	if(actual_animal != capybaraId ):
 		if(stamina[actual_animal] > 0 && posXActual < mediumPos - 1):
@@ -221,10 +226,10 @@ func _process(delta):
 			recovering = true
 	
 	
-	get_parent().get_node("UI/stamina_bars/ciervo/stamina").set_value(stamina[0])
-	get_parent().get_node("UI/stamina_bars/sapo/stamina").set_value(stamina[1])
-	get_parent().get_node("UI/stamina_bars/goat/stamina").set_value(stamina[2])
-
+	get_node("/root/global").stamina[0] = stamina[0]
+	get_node("/root/global").stamina[1] = stamina[1]
+	get_node("/root/global").stamina[2] = stamina[2]
+	
 
 	# Salto
 	#Manejo de gravedad
@@ -253,10 +258,14 @@ func _process(delta):
 				actual_animal = 2
 			
 				
-		
+	get_node("/root/global").actual_animal = actual_animal
 		
 func _exit_tree():
 	get_node("/root/global").distance_travelled = distance
+
+
+func _unblock_change():
+	get_node("/root/global").blockChange = false
 
 func _ready():
 	# Initalization here
@@ -265,8 +274,8 @@ func _ready():
 	gravity = get_node("/root/global").gravity
 	get_node("anim").play("running")
 	get_node("/root/global").player_id = get_instance_ID()
+	get_node("charCd").connect("timeout",self,"_unblock_change")
 	diferencialPosX = 0
-	actual_animal = 0
 	max_stamina = 0
 	distance = 0
 	set_fixed_process(true)
