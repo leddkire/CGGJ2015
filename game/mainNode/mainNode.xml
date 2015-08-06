@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="3" version="1.1" version_name="Godot Engine v1.1.stable.d3b42e41b0">
-	<ext_resource path="res://game/title/fancy.png" type="Texture"></ext_resource>
-	<resource type="GDScript" path="local://1">
-		<string name="script/source"> "var opac = 0&#000a;var timeout = 3&#000a;var main_scene&#000a;&#000a;func _fixed_process(delta):&#000a;&#0009;if(timeout &lt;0):&#000a;&#0009;&#0009;opac += delta&#000a;&#0009;&#0009;get_node(&quot;logo&quot;).set_opacity(opac)&#000a;&#0009;&#0009;timeout -= delta&#000a;&#0009;if(Input.is_action_pressed(&quot;jump&quot;)):&#000a;&#0009;&#0009;get_node(&quot;logo&quot;).hide()&#000a;&#0009;&#0009;set_fixed_process(false)&#000a;&#0009;&#0009;get_node(&quot;/root/global&quot;).change_scene(&quot;res://game/mainScene/MainScene.xml&quot;)&#000a;&#000a;func _ready():&#000a;&#0009;var opac = 0&#000a;&#0009;main_scene= preload(&quot;res://game/mainScene/MainScene.xml&quot;)&#000a;&#0009;set_fixed_process(true)" </string>
-
-	</resource>
+<resource_file type="PackedScene" subresource_count="2" version="1.1" version_name="Godot Engine v1.1.stable.d3b42e41b0">
+	<ext_resource path="res://game/mainNode/mainNode.gd" type="Script"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -12,10 +8,14 @@
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 			<string> "names" </string>
-			<string_array  len="27">
-				<string> "TitleScreen" </string>
-				<string> "Node2D" </string>
+			<string_array  len="16">
+				<string> "root" </string>
+				<string> "Node" </string>
 				<string> "_import_path" </string>
+				<string> "script/script" </string>
+				<string> "__meta__" </string>
+				<string> "MainLayer" </string>
+				<string> "Node2D" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
@@ -25,40 +25,18 @@
 				<string> "transform/scale" </string>
 				<string> "z/z" </string>
 				<string> "z/relative" </string>
-				<string> "script/script" </string>
-				<string> "__meta__" </string>
-				<string> "logo" </string>
-				<string> "Sprite" </string>
-				<string> "texture" </string>
-				<string> "centered" </string>
-				<string> "offset" </string>
-				<string> "flip_h" </string>
-				<string> "flip_v" </string>
-				<string> "vframes" </string>
-				<string> "hframes" </string>
-				<string> "frame" </string>
-				<string> "modulate" </string>
-				<string> "region" </string>
-				<string> "region_rect" </string>
 			</string_array>
 			<string> "node_count" </string>
 			<int> 2 </int>
 			<string> "nodes" </string>
-			<int_array  len="80"> 				-1, -1, 1, 0, -1, 12, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 1, 12, 8, 13, 9, 0, 0, 0, 15, 14, -1, 21, 2, 0, 3, 1, 4, 5, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 1, 16, 10, 17, 11, 18, 4, 19, 11, 20, 11, 21, 3, 22, 3, 23, 7, 24, 12, 25, 11, 26, 13, 0 </int_array>
+			<int_array  len="40"> 				-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 0, 0, 6, 5, -1, 10, 2, 0, 7, 3, 8, 4, 9, 4, 10, 5, 11, 6, 12, 7, 13, 8, 14, 9, 15, 3, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="14" shared="false">
+			<array  len="10" shared="false">
 				<node_path> "" </node_path>
-				<bool> True </bool>
-				<real> 1 </real>
-				<int> 1 </int>
-				<vector2> 0, 0 </vector2>
-				<real> 0 </real>
-				<vector2> 1, 1 </vector2>
-				<int> 0 </int>
-				<resource  resource_type="Script" path="local://1">  </resource>
+				<resource  resource_type="Script" path="res://game/mainNode/mainNode.gd">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "2D" </string>
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "2D" </string>
@@ -181,13 +159,11 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 3 </int>
+							<int> 0 </int>
 							<string> "sources" </string>
-							<array  len="4" shared="false">
-								<string> "res://parallax.gd" </string>
-								<string> "res://game/coin/coin_generator.gd" </string>
-								<string> "res://game/player/player.gd" </string>
-								<node_path> "/root/EditorNode/@Panel4/@VBoxContainer7/@HSplitContainer9/@VSplitContainer10/@VSplitContainer11/@VBoxContainer12/@Panel17/@Control19/@CanvasItemEditor5885/@VSplitContainer5810/@HSplitContainer5811/@Control5812/@Control5813/@Viewport5814/TitleScreen" </node_path>
+							<array  len="2" shared="false">
+								<string> "res://game/mainNode/mainNode.gd" </string>
+								<string> "res://game/global.gd" </string>
 							</array>
 						</dictionary>
 					</dictionary>
@@ -199,10 +175,13 @@
 						<int> 0 </int>
 					</dictionary>
 				</dictionary>
-				<resource  resource_type="Texture" path="res://game/title/fancy.png">  </resource>
-				<bool> False </bool>
-				<color> 1, 1, 1, 1 </color>
-				<rect2> 0, 0, 0, 0 </rect2>
+				<bool> True </bool>
+				<real> 1 </real>
+				<int> 1 </int>
+				<vector2> 0, 0 </vector2>
+				<real> 0 </real>
+				<vector2> 1, 1 </vector2>
+				<int> 0 </int>
 			</array>
 			<string> "version" </string>
 			<int> 1 </int>
